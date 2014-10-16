@@ -6,16 +6,18 @@ import java.util.TreeSet;
 
 /**
  * A ToneRow class.
+ * 
+ * Representation Invariant: No two Notes may have the same PitchClass
  * @author Geoffrey Liu
  */
 public class ToneRow {
-	private Set<PitchClass> rowSet;
+	private Set<Note> rowSet;
 	
 	/**
 	 * Create a new empty ToneRow
 	 */
 	public ToneRow() {
-		rowSet = new TreeSet<PitchClass>();
+		rowSet = new TreeSet<Note>();
 		checkRep();
 	}
 	
@@ -23,7 +25,7 @@ public class ToneRow {
 	 * Create a new ToneRow using elements from an existing ArrayList.
 	 * @param rowArray the ArrayList containing pitch classes
 	 */
-	public ToneRow(ArrayList<PitchClass> rowArray) {
+	public ToneRow(ArrayList<Note> rowArray) {
 		// TODO: Implementation
 	}
 	
