@@ -26,6 +26,10 @@ public class Note {
 		this.register = reg;
 	}
 	
+	public PitchClass getPitchClass() {
+		return pitchClass;
+	}
+	
 	/**
 	 * Returns the Note resulting from transposing this note by a certain interval.
 	 * @param interval the interval to which to transpose the Note
@@ -56,6 +60,20 @@ public class Note {
 		return 0;
 	}
 	
+	/**
+	 * Returns whether this note and another note have the same pitch class.
+	 *  If they do, they are considered equal.
+	 * @param n the other note to which to compare
+	 * @return true if the two notes have the same pitch class, false otherwise
+	 */
+	public boolean equals(Note n) {
+		return this.getPitchClass().equals(n.getPitchClass());
+	}
+	
+	public boolean deepEquals(Note n) {
+		return equals(n) && this.register == n.register;
+	}
+
 	@Override
 	public String toString() {
 		// TODO: Implement

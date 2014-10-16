@@ -10,7 +10,8 @@ import java.util.TreeSet;
  * Representation Invariant: No two Notes may have the same PitchClass
  * @author Geoffrey Liu
  */
-public class ToneRow {
+public class ToneRow
+{
 	private Set<Note> rowSet;
 	
 	/**
@@ -18,6 +19,7 @@ public class ToneRow {
 	 */
 	public ToneRow() {
 		rowSet = new TreeSet<Note>();
+		normalize();
 		checkRep();
 	}
 	
@@ -29,11 +31,19 @@ public class ToneRow {
 		// TODO: Implementation
 	}
 	
+	public void add(Note n) {
+		rowSet.add(n);
+	}
+	
 	/**
 	 * Normalizes this row such that all pitches are contained within one octave.
 	 */
 	private void normalize() {
 		
+	}
+	
+	public int size() {
+		return rowSet.size();
 	}
 	
 	public ToneRow retrograde() {
