@@ -29,6 +29,13 @@ public class ToneRow {
 		// TODO: Implementation
 	}
 	
+	/**
+	 * Normalizes this row such that all pitches are contained within one octave.
+	 */
+	private void normalize() {
+		
+	}
+	
 	public ToneRow retrograde() {
 		// TODO: Implement
 		return null;

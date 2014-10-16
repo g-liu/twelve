@@ -5,33 +5,61 @@ package twelve;
 
 /**
  * A Note represents a defined pitch. This class is immutable.
+ * https://en.wikipedia.org/wiki/Note#Note_designation_in_accordance_with_octave_name
  * @author Geoffrey
- *
  */
 public class Note {
+	/**
+	 * The pitch class to which this note belongs.
+	 * https://en.wikipedia.org/wiki/Pitch_class
+	 */
 	private final PitchClass pitchClass;
-	private final int octave;
+	/**
+	 * The register in which this Note belongs. register is set according to the
+	 *  scientific pitch notation standard, which assigns middle C to 4.
+	 *  https://en.wikipedia.org/wiki/Scientific_pitch_notation
+	 */
+	private final int register;
 	
-	public Note(PitchClass pc, int octv) {
+	public Note(PitchClass pc, int reg) {
 		this.pitchClass = pc;
-		this.octave = octv;
+		this.register = reg;
 	}
 	
-	public Note transpose(Interval interval) {
+	/**
+	 * Returns the Note resulting from transposing this note by a certain interval.
+	 * @param interval the interval to which to transpose the Note
+	 * @return a Note representing the resultant transposition.
+	 */
+	public Note transpose(int interval) {
 		// TODO: Implement
 		return null;
+	}
+	
+	/**
+	 * Returns the intervallic distance between this note and otherNote,
+	 *  relative to thisNote.
+	 * @param otherNote
+	 * @return
+	 */
+	public int intervalTo(Note otherNote) {
+		return 0;
+	}
+	
+	/**
+	 * Returns the MIDI specified number that represents the Note.
+	 *  If none, returns -1.
+	 * @return MIDI equivalent number for the note, -1 if not applicable.
+	 */
+	public int getMidiNumber() {
+		// TODO: Implement
+		return 0;
 	}
 	
 	@Override
 	public String toString() {
 		// TODO: Implement
-		return null;
-	}
-	
-	@Override
-	public int hashCode() {
-		// TODO: Implement
-		return 0;
+		return pitchClass.toString() + register;
 	}
 
 }
