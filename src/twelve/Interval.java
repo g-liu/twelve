@@ -9,5 +9,7 @@ package twelve;
  *
  */
 public class Interval {
+	
+	// TODO: Consider making this an Enum?
 
 }

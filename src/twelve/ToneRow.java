@@ -29,6 +29,23 @@ public class ToneRow {
 		// TODO: Implementation
 	}
 	
+	public ToneRow retrograde() {
+		// TODO: Implement
+		return null;
+		
+	}
+	
+	public ToneRow inversion() {
+		// TODO: Implement
+		return null;
+		
+	}
+	
+	public ToneRow retrogradeInversion() {
+		return this.retrograde().inversion();
+		
+	}
+	
 	@Override
 	public String toString() {
 		return rowSet.toString();
