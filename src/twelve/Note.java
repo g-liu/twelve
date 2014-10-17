@@ -34,17 +34,68 @@ public class Note {
 		// TODO: Implement
 		this.pitchClass = pc;
 		this.register = reg;
-		String roughStringRep;
+		StringBuilder repBuilder = new StringBuilder();
+		StringBuilder otherBuilder = new StringBuilder();
 		switch(pc) {
 		// TODO: Build the string representation
+		case ONE:
+			repBuilder.append("#");
+			otherBuilder.append("Db");
+		case ZERO:
+			repBuilder.insert(0, "C");
+			if(otherBuilder.length() == 0) {
+				otherBuilder.append("B#");
+			}
+			break;
+		case THREE:
+			repBuilder.append("#");
+			otherBuilder.append("Eb");
+		case TWO:
+			repBuilder.insert(0, "D");
+			break;
+		case FOUR:
+			repBuilder.append("E");
+			otherBuilder.append("Fb");
+			break;
+		case SIX:
+			repBuilder.append("#");
+			otherBuilder.append("Gb");
+		case FIVE:
+			repBuilder.insert(0, "F");
+			if(otherBuilder.length() == 0) {
+				otherBuilder.append("E#");
+			}
+			break;
+		case EIGHT:
+			repBuilder.append("#");
+			otherBuilder.append("Ab");
+		case SEVEN:
+			repBuilder.insert(0, "G");
+			break;
+		case TEN:
+			repBuilder.append("#");
+			otherBuilder.append("Bb");
+		case NINE:
+			repBuilder.insert(0, "A");
+			break;
+		case ELEVEN:
+			repBuilder.append("B");
+			otherBuilder.append("Cb");
 		default:
 			break;
 		
 		}
+		
+		stringRep = repBuilder.toString();
+		otherStringRep = otherBuilder.toString();
 	}
 	
 	public PitchClass getPitchClass() {
 		return pitchClass;
+	}
+	
+	public String getEnharmonic() {
+		return otherStringRep;
 	}
 	
 	/**
@@ -94,7 +145,7 @@ public class Note {
 	@Override
 	public String toString() {
 		// TODO: Implement
-		return pitchClass.toString() + register;
+		return stringRep + register;
 	}
 
 }

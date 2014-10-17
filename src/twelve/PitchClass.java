@@ -16,18 +16,18 @@ package twelve;
  *
  */
 public enum PitchClass {
-	ZERO(0),//        BSHARP(0),  C(0),
+	ZERO(0),//        C(0),
 	ONE(1),//         CSHARP(1),  DFLAT(1),
 	TWO(2),//         D(2),
 	THREE(3),//       DSHARP(3),  EFLAT(3),
-	FOUR(4),//        E(4),       FFLAT(4),
-	FIVE(5),//        ESHARP(5),  F(5),
+	FOUR(4),//        E(4),
+	FIVE(5),//        F(5),
 	SIX(6),//         FSHARP(6),  GFLAT(6),
 	SEVEN(7),//       G(7),
 	EIGHT(8),//       GSHARP(8),  AFLAT(8),
 	NINE(9),//        A(9),
 	TEN(10),//        ASHARP(10), BFLAT(10),
-	ELEVEN(11);//     B(11),      CFLAT(11);
+	ELEVEN(11);//     B(11);
 	
 	private int degree;
 	
