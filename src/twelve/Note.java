@@ -124,8 +124,11 @@ public class Note {
 	 * @return MIDI equivalent number for the note, -1 if not applicable.
 	 */
 	public int getMidiNumber() {
-		// TODO: Implement
-		return 0;
+		int midi = register + 1 + pitchClass.degree();
+		if(midi < 0 || midi > 127) {
+			return -1;
+		}
+		return midi;
 	}
 	
 	/**
@@ -144,7 +147,6 @@ public class Note {
 
 	@Override
 	public String toString() {
-		// TODO: Implement
 		return stringRep + register;
 	}
 
