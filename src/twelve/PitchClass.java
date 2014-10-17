@@ -1,59 +1,38 @@
+/**
+ * 
+ */
 package twelve;
 
 /**
- * An immutable class that represents a single pitch class.
- * Pitch class is defined numerically:
- * 0 = C, 1 = C-sharp, ... 11 = B
- * @author Geoffrey Liu
+ * An enum representing a certain pitch class.
+ * Pitch classes are away to group pitches by name, by assigning an integer.
+ * The system works like such:
+ * 0  => C
+ * 1  => C#/Db (note: these are enharmonic).
+ * 2  => D
+ * ...
+ * 11 => B
+ * @author sn310533
  *
  */
-public class PitchClass {
-	private final int degree;
+public enum PitchClass {
+	ZERO(0),
+	ONE(1),
+	TWO(2),
+	THREE(3),
+	FOUR(4),
+	FIVE(5),
+	SIX(6),
+	SEVEN(7),
+	EIGHT(8),
+	NINE(9),
+	TEN(10),
+	ELEVEN(11);
 	
-	public PitchClass(int degree) {
+	int degree;
+	
+	PitchClass(int degree) {
 		this.degree = degree;
 	}
-	
-	public PitchClass(String note) {
-		// TODO: Implement
-		String[] tokens = note.split("");
-		int roughDegree = -1;
-		switch(tokens[0].toUpperCase()) {
-			case "A": roughDegree = 9;  break;
-			case "B": roughDegree = 11; break;
-			case "C": roughDegree = 0;  break;
-			case "D": roughDegree = 2;  break;
-			case "E": roughDegree = 4;  break;
-			case "F": roughDegree = 5;  break;
-			case "G": roughDegree = 7;  break;
-		}
-		
-		// handle accidentals
-		if(tokens.length == 2) {
-			if(tokens[1].equals("#") || tokens[1].equals("♯")) {
-				roughDegree++;
-			}
-			else if(tokens[1].equals("b") || tokens[1].equals("♭")) {
-				roughDegree--;
-			}
-			else if(tokens[1].equals("𝄫")) {
-				roughDegree -= 2;
-			}
-			else if(tokens[1].equals("𝄪")) {
-				roughDegree += 2;
-			}
-		}
-		
-		degree = roughDegree % 12;
-	}
-	
-	@Override
-	public String toString() {
-		return null;
-	}
-	
-	@Override
-	public int hashCode() {
-		return 0;
-	}
 }
+

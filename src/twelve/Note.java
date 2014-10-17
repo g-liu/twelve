@@ -20,6 +20,15 @@ public class Note {
 	 *  https://en.wikipedia.org/wiki/Scientific_pitch_notation
 	 */
 	private final int register;
+	/**
+	 * A string representation of the note. Needed, as some notes share the same
+	 *  pitch class and register, e.g. C# and Db.
+	 */
+	private final String stringRep;
+	/**
+	 * If the note can be represented differently, say so.
+	 */
+	private final String otherStringRep;
 	
 	public Note(PitchClass pc, int reg) {
 		this.pitchClass = pc;
