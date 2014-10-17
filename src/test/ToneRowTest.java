@@ -20,8 +20,8 @@ public class ToneRowTest {
 	@Test
 	public void cannotInsertDuplicateNotes() {
 		// these notes are an octave apart
-		Note n1 = new Note(new PitchClass(1), 4);
-		Note n2 = new Note(new PitchClass(1), 5);
+		Note n1 = new Note(PitchClass.ZERO, 4);
+		Note n2 = new Note(PitchClass.ZERO, 5);
 		
 		ToneRow tr = new ToneRow();
 		tr.add(n1);

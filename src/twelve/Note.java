@@ -31,8 +31,16 @@ public class Note {
 	private final String otherStringRep;
 	
 	public Note(PitchClass pc, int reg) {
+		// TODO: Implement
 		this.pitchClass = pc;
 		this.register = reg;
+		String roughStringRep;
+		switch(pc) {
+		// TODO: Build the string representation
+		default:
+			break;
+		
+		}
 	}
 	
 	public PitchClass getPitchClass() {
