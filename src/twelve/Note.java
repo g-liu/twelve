@@ -136,16 +136,11 @@ public class Note {
 	}
 	
 	/**
-	 * Returns whether this note and another note have the same pitch class.
-	 *  If they do, they are considered equal.
+	 * Returns whether this note and another note are the same note.
 	 * @param n the other note to which to compare
-	 * @return true if the two notes have the same pitch class, false otherwise
+	 * @return true if the two notes have the same note, false otherwise
 	 */
 	public boolean equals(Note n) {
-		return this.getPitchClass().equals(n.getPitchClass());
-	}
-	
-	public boolean deepEquals(Note n) {
 		return equals(n) && this.register == n.register;
 	}
 

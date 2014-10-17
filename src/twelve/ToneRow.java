@@ -1,8 +1,8 @@
 package twelve;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * A ToneRow class.
@@ -18,7 +18,7 @@ public class ToneRow
 	 * Create a new empty ToneRow
 	 */
 	public ToneRow() {
-		rowSet = new TreeSet<Note>();
+		rowSet = new LinkedHashSet<Note>();
 		normalize();
 		checkRep();
 	}
