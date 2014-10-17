@@ -87,7 +87,11 @@ public class Note {
 		}
 		
 		stringRep = repBuilder.toString();
-		otherStringRep = otherBuilder.toString();
+		otherStringRep = otherBuilder.length() > 0 ? otherBuilder.toString() : stringRep;
+	}
+	
+	public String getNoteName() {
+		return stringRep;
 	}
 	
 	public PitchClass getPitchClass() {

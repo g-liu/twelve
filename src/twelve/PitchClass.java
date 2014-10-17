@@ -42,5 +42,9 @@ public enum PitchClass {
 	public int degree() {
 		return degree;
 	}
+	
+	public int getTransposition(int interval) {
+		return (degree + interval) % 12;
+	}
 }
 
