@@ -31,8 +31,8 @@ public class ToneRow
 		// TODO: Implementation
 	}
 	
-	public void add(Note n) {
-		rowSet.add(n);
+	public boolean add(Note n) {
+		return rowSet.add(n);
 	}
 	
 	/**

@@ -119,6 +119,7 @@ public class Note {
 	 * @return
 	 */
 	public int intervalTo(Note otherNote) {
+		// TODO: Implement
 		return 0;
 	}
 	
@@ -140,8 +141,17 @@ public class Note {
 	 * @param n the other note to which to compare
 	 * @return true if the two notes have the same note, false otherwise
 	 */
-	public boolean equals(Note n) {
-		return equals(n) && this.register == n.register;
+	@Override
+	public boolean equals(Object n) {
+		return this.pitchClass.degree() == ((Note) n).pitchClass.degree();
+	}
+	
+	/**
+	 * HashCode. All Notes with the same pitch class should have the same hash.
+	 */
+	@Override
+	public int hashCode() {
+		return this.pitchClass.degree();
 	}
 
 	@Override

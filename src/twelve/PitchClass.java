@@ -29,7 +29,7 @@ public enum PitchClass {
 	TEN(10),//        ASHARP(10), BFLAT(10),
 	ELEVEN(11);//     B(11);
 	
-	private int degree;
+	private final int degree;
 	
 	private PitchClass(int degree) {
 		this.degree = degree;
@@ -43,8 +43,20 @@ public enum PitchClass {
 		return degree;
 	}
 	
-	public int getTransposition(int interval) {
-		return (degree + interval) % 12;
+	/**
+	 * Returns the resultant PitchClass given a transposition by a given number
+	 *  of semitones.
+	 * @param interval the number of semitones to transpose.
+	 *  If positive, transposes "up"
+	 *  If negative, transposes "down"
+	 * @return 
+	 */
+	public PitchClass getTransposition(int interval) {
+		int numberClass = (degree + interval) % 12;
+		for(PitchClass pc : PitchClass.values()) {
+			if(pc.degree() == numberClass) { return pc; }
+		}
+		return null;
 	}
 }
 

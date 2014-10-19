@@ -27,7 +27,20 @@ public class ToneRowTest {
 		tr.add(n1);
 		tr.add(n2);
 		
-		assertEquals(tr.size(), 1);
+		assertEquals("Should only be one element", tr.size(), 1);
+	}
+	
+	@Test
+	public void canInsertNonDuplicateNotes() {
+		// these notes are not of the same pitch class
+		Note n1 = new Note(PitchClass.FIVE, 3);
+		Note n2 = new Note(PitchClass.EIGHT, 3);
+		
+		ToneRow tr = new ToneRow();
+		tr.add(n1);
+		tr.add(n2);
+		
+		assertEquals("Should have two elements", tr.size(), 2);
 	}
 
 }
