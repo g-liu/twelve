@@ -90,6 +90,62 @@ public class Note {
 		otherStringRep = otherBuilder.length() > 0 ? otherBuilder.toString() : stringRep;
 	}
 	
+	// TODO: Specify format in @param
+	/**
+	 * Creates a new Note based on a String representation of the note
+	 * @param note the String representing the Note to be created.
+	 * @throws IllegalArgumentException if the parameter is not of a valid format.
+	 */
+	public Note(String note) {
+		String[] noteParse = note.split("");
+		// check the representation. noteParse[0] should contain the note name from A-G,
+		// noteParse[1], if it exists, should contain one of eight modifiers:
+		// b or ♭ (flat)
+		// # or ♯ (sharp)
+		// ♮ (natural)
+		// U+1D12B (double flat)
+		// x or U+1D12A (double sharp)
+		// in the case of the latter two, this constructor will normalize the
+		// note name as to not use double-flat or double-sharp. For example,
+		// A-double-sharp will be normalized to B.
+		if(noteParse.length == 0) {
+			throw new IllegalArgumentException("The note name " + note + " is invalid.");
+		}
+		noteParse[0] = noteParse[0].toUpperCase();
+		
+		int pitchClassNum = 0;
+		
+		switch(noteParse[0]) {
+		case "A": break;
+		case "B": break;
+		case "C": break;
+		case "D": break;
+		case "E": break;
+		case "F": break;
+		case "G": break;
+		default: throw new IllegalArgumentException("Note name " + noteParse[1] + " is invalid. Note names must be one of (A, B, C, D, E, F, or G).");
+		}
+		
+		if(noteParse.length > 1) {
+			switch(noteParse[1]) {
+			case "#":
+			case "♯": break;
+			case "b": 
+			case "♭": break;
+			case "x": 
+			case "𝄪": break; // double sharp
+			case "𝄫": break; // double flat
+			default: throw new IllegalArgumentException("Invalid note modifier " + noteParse[1]);
+			}
+		}
+		
+		// TODO: noteParse[2] is the register
+		
+		stringRep = noteParse[0] + noteParse[1];
+		register = Integer.parseInt(noteParse[2]);
+		pitchClass = PitchClass.getPitchClass(pitchClassNum);
+	}
+	
 	public String getNoteName() {
 		return stringRep;
 	}

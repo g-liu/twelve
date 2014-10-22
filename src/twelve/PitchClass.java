@@ -43,6 +43,13 @@ public enum PitchClass {
 		return degree;
 	}
 	
+	public static PitchClass getPitchClass(int degree) {
+		for(PitchClass pc : PitchClass.values()) {
+			if(pc.degree() == degree) { return pc; }
+		}
+		return null; // no matching PitchClass
+	}
+	
 	/**
 	 * Returns the resultant PitchClass given a transposition by a given number
 	 *  of semitones.
@@ -53,10 +60,7 @@ public enum PitchClass {
 	 */
 	public PitchClass getTransposition(int interval) {
 		int numberClass = (degree + interval) % 12;
-		for(PitchClass pc : PitchClass.values()) {
-			if(pc.degree() == numberClass) { return pc; }
-		}
-		return null;
+		return getPitchClass(numberClass);
 	}
 }
 
