@@ -83,7 +83,6 @@ public class Note {
 			otherBuilder.append("Cb");
 		default:
 			break;
-		
 		}
 		
 		stringRep = repBuilder.toString();
@@ -97,7 +96,7 @@ public class Note {
 	 * @throws IllegalArgumentException if the parameter is not of a valid format.
 	 */
 	public Note(String note) {
-		String[] noteParse = note.split("");
+		String[] noteParse = note.split("", 3);
 		// check the representation. noteParse[0] should contain the note name from A-G,
 		// noteParse[1], if it exists, should contain one of eight modifiers:
 		// b or ♭ (flat)
@@ -116,34 +115,44 @@ public class Note {
 		int pitchClassNum = 0;
 		
 		switch(noteParse[0]) {
-		case "A": break;
-		case "B": break;
-		case "C": break;
-		case "D": break;
-		case "E": break;
-		case "F": break;
-		case "G": break;
+		case "A": pitchClassNum = 9; break;
+		case "B": pitchClassNum = 11; break;
+		case "C": pitchClassNum = 0; break;
+		case "D": pitchClassNum = 2; break;
+		case "E": pitchClassNum = 4; break;
+		case "F": pitchClassNum = 5; break;
+		case "G": pitchClassNum = 7; break;
 		default: throw new IllegalArgumentException("Note name " + noteParse[1] + " is invalid. Note names must be one of (A, B, C, D, E, F, or G).");
 		}
 		
 		if(noteParse.length > 1) {
 			switch(noteParse[1]) {
 			case "#":
-			case "♯": break;
+			case "♯": pitchClassNum++; break;
 			case "b": 
-			case "♭": break;
+			case "♭": pitchClassNum--; break;
 			case "x": 
-			case "𝄪": break; // double sharp
-			case "𝄫": break; // double flat
+			case "𝄪": pitchClassNum += 2; break; // double sharp
+			case "𝄫": pitchClassNum -= 2; break; // double flat
 			default: throw new IllegalArgumentException("Invalid note modifier " + noteParse[1]);
 			}
 		}
 		
 		// TODO: noteParse[2] is the register
+		int tempRegister = 4;
+		if(noteParse.length > 2) {
+			try {
+				tempRegister = Integer.parseInt(noteParse[2]);
+			}
+			catch(NumberFormatException nfe) {
+				// nothing to do here...
+			}
+		}
 		
 		stringRep = noteParse[0] + noteParse[1];
-		register = Integer.parseInt(noteParse[2]);
-		pitchClass = PitchClass.getPitchClass(pitchClassNum);
+		otherStringRep = this.getEnharmonic(stringRep);
+		register = tempRegister;
+		pitchClass = PitchClass.getPitchClass(pitchClassNum % 12);
 	}
 	
 	/**
@@ -178,6 +187,17 @@ public class Note {
 	 */
 	public String getEnharmonic() {
 		return otherStringRep;
+	}
+	
+	/**
+	 * Returns an enharmonic note string.
+	 * @param note
+	 * @return
+	 */
+	private String getEnharmonic(String note) {
+		String[] noteTokens = note.split("");
+		// TODO: Implement this
+		throw new UnsupportedOperationException("Not yet implemented.");
 	}
 	
 	/**
