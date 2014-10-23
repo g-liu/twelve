@@ -146,14 +146,36 @@ public class Note {
 		pitchClass = PitchClass.getPitchClass(pitchClassNum);
 	}
 	
+	/**
+	 * Gets the name of the note
+	 * @return the note name
+	 */
 	public String getNoteName() {
 		return stringRep;
 	}
 	
+	/**
+	 * Gets the octave register of this Note
+	 * @return the register in which this note belongs
+	 */
+	public int getRegister() {
+		return register;
+	}
+	
+	/**
+	 * Gets the PitchClass of this note
+	 * @return the associated PitchClass
+	 */
 	public PitchClass getPitchClass() {
 		return pitchClass;
 	}
 	
+	/**
+	 * Get this note's enharmonic string representation. For example,
+	 *  constructing a new Note("C#"), then calling this method will return
+	 *  "Db" because D-flat is enharmonic to C-sharp.
+	 * @return
+	 */
 	public String getEnharmonic() {
 		return otherStringRep;
 	}
@@ -203,13 +225,16 @@ public class Note {
 	}
 	
 	/**
-	 * HashCode. All Notes with the same pitch class should have the same hash.
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
 		return this.pitchClass.degree();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		return stringRep + register;
