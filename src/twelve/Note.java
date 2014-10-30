@@ -3,9 +3,6 @@
  */
 package twelve;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A Note represents a defined pitch. This class is immutable.
  * https://en.wikipedia.org/wiki/Note#Note_designation_in_accordance_with_octave_name
