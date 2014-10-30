@@ -3,6 +3,9 @@
  */
 package twelve;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A Note represents a defined pitch. This class is immutable.
  * https://en.wikipedia.org/wiki/Note#Note_designation_in_accordance_with_octave_name
@@ -149,6 +152,7 @@ public class Note {
 			}
 		}
 		
+		// TODO: Normalize double sharps and flats?
 		stringRep = noteParse[0] + noteParse[1];
 		otherStringRep = this.getEnharmonic(stringRep);
 		register = tempRegister;
@@ -191,13 +195,54 @@ public class Note {
 	
 	/**
 	 * Returns an enharmonic note string.
-	 * @param note
+	 * @param note String representation of the Note, e.g "G#"
 	 * @return
 	 */
 	private String getEnharmonic(String note) {
 		String[] noteTokens = note.split("");
-		// TODO: Implement this
-		throw new UnsupportedOperationException("Not yet implemented.");
+		StringBuilder enh = new StringBuilder();
+		if(noteTokens.length > 1) {
+			switch(noteTokens[1]) {
+			case "#":
+			case "♯": enh.append(NoteLetter.nextNote(noteTokens[0]));
+				switch(noteTokens[0].toUpperCase()) { // may have to add flats
+				case "C": case "D": case "F": case "G": case "A":
+					enh.append("b");
+					break;
+				}
+			case "b": 
+			case "♭": enh.append(NoteLetter.previousNote(noteTokens[0]));
+				switch(noteTokens[0].toUpperCase()) {
+				case "D": case "E": case "G": case "A": case "B":
+					enh.append("#");
+					break;
+				}
+			case "x": 
+			case "𝄪": enh.append(NoteLetter.nextNote(noteTokens[0])); // double sharp
+				switch(noteTokens[0].toUpperCase()) { // may have to add sharps
+				case "E": case "B":
+					enh.append("#");
+					break;
+				}
+			case "𝄫": enh.append(NoteLetter.previousNote(noteTokens[0])); // double flat
+				switch(noteTokens[0].toUpperCase()) { // may have to add flats
+				case "C": case "F":
+					enh.append("b");
+					break;
+				}
+			}
+		}
+		else { // Note is something like "A", "B"
+			switch(noteTokens[0].toUpperCase()) {
+			case "B": enh.append("Cb"); break;
+			case "E": enh.append("Fb"); break;
+			case "C": enh.append("B#"); break;
+			case "F": enh.append("E#"); break;
+			default: enh.append(noteTokens[0]); break;
+			}
+		}
+		
+		return enh.toString();
 	}
 	
 	/**
@@ -259,5 +304,4 @@ public class Note {
 	public String toString() {
 		return stringRep + register;
 	}
-
 }
