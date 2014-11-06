@@ -5,59 +5,75 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * A ToneRow class.
+ * A ToneRow class. Immutable.
  * 
- * Representation Invariant: No two Notes may have the same PitchClass
+ * Representation Invariant: No two Notes may have the same PitchClass. This is
+ * 	enforced by the Set-backed structure of the ToneRow.
  * @author Geoffrey Liu
  */
 public class ToneRow
 {
 	private Set<Note> rowSet;
 	
+	private final boolean DEBUG = false;
+	
 	/**
-	 * Create a new empty ToneRow
+	 * Create a new ToneRow using elements from an existing ArrayList.
+	 * @param rowArray the ArrayList containing notes
 	 */
-	public ToneRow() {
-		rowSet = new LinkedHashSet<Note>();
-		normalize();
+	public ToneRow(ArrayList<Note> rowArray) {
+		for(Note n: rowArray) {
+			rowSet.add(n);
+		}
+		this.normalize();
 		checkRep();
 	}
 	
 	/**
-	 * Create a new ToneRow using elements from an existing ArrayList.
-	 * @param rowArray the ArrayList containing pitch classes
+	 * Create a new ToneRow using elements from an existing Note array
+	 * @param rowArray the array containing the notes
 	 */
-	public ToneRow(ArrayList<Note> rowArray) {
-		// TODO: Implementation
-	}
-	
-	public boolean add(Note n) {
-		return rowSet.add(n);
+	public ToneRow(Note[] rowArray) {
+		// TODO: DRY?
+		for(Note n: rowArray) {
+			rowSet.add(n);
+		}
+		this.normalize();
+		checkRep();
 	}
 	
 	/**
 	 * Normalizes this row such that all pitches are contained within one octave.
 	 */
 	private void normalize() {
-		
+		// TODO: Implement
+		throw new UnsupportedOperationException("Error: Not yet implemented");
 	}
 	
-	public int size() {
-		return rowSet.size();
-	}
-	
+	/**
+	 * Returns the retrograde form of this tone row
+	 * @return the tone row, in retrograde
+	 */
 	public ToneRow retrograde() {
 		// TODO: Implement
 		return null;
 		
 	}
 	
+	/**
+	 * Returns the inversion of this tone row
+	 * @return the tone row, inverted
+	 */
 	public ToneRow inversion() {
 		// TODO: Implement
 		return null;
 		
 	}
 	
+	/**
+	 * Returns the retrograde inversion of this tone row
+	 * @return the row, in retrograde inversion form
+	 */
 	public ToneRow retrogradeInversion() {
 		return this.retrograde().inversion();
 		
@@ -69,6 +85,9 @@ public class ToneRow
 	}
 	
 	private void checkRep() {
-		// TODO: Make sure that the ToneRow contains all twelve pitch classes.
+		if(DEBUG) {
+			assert rowSet.size() == 12 : "Row does not have 12 pitches";
+			assert !rowSet.contains(null) : "Row cannot have a `null` element";
+		}
 	}
 }

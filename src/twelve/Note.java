@@ -98,7 +98,7 @@ public class Note {
 	 * @param note the String representing the Note to be created.
 	 * @throws IllegalArgumentException if the parameter is not of a valid format.
 	 */
-	public Note(String note) {
+	public Note(String note) throws IllegalArgumentException {
 		String[] noteParse = note.split("", 3);
 		// check the representation. noteParse[0] should contain the note name from A-G,
 		// noteParse[1], if it exists, should contain one of eight modifiers:
