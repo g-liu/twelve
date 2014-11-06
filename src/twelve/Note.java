@@ -9,10 +9,7 @@ package twelve;
  * @author Geoffrey
  */
 public class Note {
-	/**
-	 * The pitch class to which this note belongs.
-	 * https://en.wikipedia.org/wiki/Pitch_class
-	 */
+	/** The pitch class to which this note belongs. */
 	private final PitchClass pitchClass;
 	/**
 	 * The register in which this Note belongs. register is set according to the
@@ -30,6 +27,12 @@ public class Note {
 	 */
 	private final String otherStringRep;
 	
+	/**
+	 * Constructs a new Node belonging to the specified PitchClass and having the
+	 *  specified register.
+	 * @param pc the PitchClass that this Note belongs to. Must not be null.
+	 * @param reg the register that this Note belongs to. Must not be null
+	 */
 	public Note(PitchClass pc, int reg) {
 		// TODO: Implement
 		this.pitchClass = pc;
@@ -141,15 +144,9 @@ public class Note {
 		// TODO: noteParse[2] is the register
 		int tempRegister = 4;
 		if(noteParse.length > 2) {
-			try {
-				tempRegister = Integer.parseInt(noteParse[2]);
-			}
-			catch(NumberFormatException nfe) {
-				// nothing to do here...
-			}
+			tempRegister = Integer.parseInt(noteParse[2]);
 		}
 		
-		// TODO: Normalize double sharps and flats?
 		stringRep = noteParse[0] + noteParse[1];
 		otherStringRep = this.getEnharmonic(stringRep);
 		register = tempRegister;
@@ -291,7 +288,7 @@ public class Note {
 	 */
 	@Override
 	public int hashCode() {
-		return this.pitchClass.degree();
+		return this.pitchClass.degree() * 37 - (this.pitchClass.degree() - 5) * 31;
 	}
 
 	/**
