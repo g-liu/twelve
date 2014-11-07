@@ -21,6 +21,7 @@ public class NamedNote implements Note {
 	 */
 	private final String otherStringRep;
 	
+	
 	/**
 	 * Constructs a new Node belonging to the specified PitchClass and having the
 	 *  specified register.
