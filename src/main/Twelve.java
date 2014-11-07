@@ -3,7 +3,9 @@
  */
 package main;
 
-import twelve.Note;
+import java.util.Arrays;
+
+import twelve.NamedNote;
 import twelve.ToneRow;
 
 /**
@@ -19,42 +21,32 @@ public class Twelve {
 	 */
 	public static void main(String[] argv) {
 		// TODO Auto-generated method stub
-		Note[] notes = parseArgs(argv); 
+		NamedNote[] notes = parseArgs(argv); 
+		System.out.println(Arrays.toString(notes));
 		tr = new ToneRow(notes);
 	}
 	
 	/**
-	 * Takes the user inputted args and returns a new Note array
+	 * Takes the user inputted args and returns a new NamedNote array
 	 * @param argv
-	 * @return
+	 * @return the NamedNote array from the user args
 	 */
-	public static Note[] parseArgs(String[] argv) {
-		if(argv.length > 0 && (argv[0] == "--help" || argv[0] == "-h")) {
-			printHelp();
-		}
-		
+	public static NamedNote[] parseArgs(String[] argv) {
 		if(argv.length == 12) {
-			Note[] addToRow = new Note[12];
+			NamedNote[] addToRow = new NamedNote[12];
 			int i = 0;
 			for(String noteName : argv) {
 				try {
-					Note toAdd = new Note(noteName);
+					NamedNote toAdd = new NamedNote(noteName);
 					addToRow[i++] = toAdd;
 				}
 				catch(IllegalArgumentException iae) {
 					iae.printStackTrace();
 				}
 			}
-			
-			tr = new ToneRow(addToRow);
-			
-			System.out.println("Tone row added");
+			return addToRow;
 		}
 		return null;
-	}
-	
-	public static void printHelp() {
-		System.out.println("Usage: java Twelve [args]");
 	}
 
 }

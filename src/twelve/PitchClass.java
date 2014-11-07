@@ -12,7 +12,7 @@ package twelve;
  * 	2  => D
  * 	...
  * 	11 => B
- * Note that PitchClasses do not have a name. This is because in music set theory,
+ * NamedNote that PitchClasses do not have a name. This is because in music set theory,
  *  enharmonic pitches are considered the same. Pitch classes are also independent
  *  of register.
  * @author sn310533

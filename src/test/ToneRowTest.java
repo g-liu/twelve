@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import twelve.Note;
+import twelve.NamedNote;
 import twelve.PitchClass;
 import twelve.ToneRow;
 

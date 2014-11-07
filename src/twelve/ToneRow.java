@@ -13,29 +13,16 @@ import java.util.Set;
  */
 public class ToneRow
 {
-	private Set<Note> rowSet;
+	private Set<NamedNote> rowSet;
 	
 	private final boolean DEBUG = false;
 	
 	/**
-	 * Create a new ToneRow using elements from an existing ArrayList.
-	 * @param rowArray the ArrayList containing notes
-	 */
-	public ToneRow(ArrayList<Note> rowArray) {
-		for(Note n: rowArray) {
-			rowSet.add(n);
-		}
-		this.normalize();
-		checkRep();
-	}
-	
-	/**
-	 * Create a new ToneRow using elements from an existing Note array
+	 * Create a new ToneRow using elements from an existing NamedNote array
 	 * @param rowArray the array containing the notes
 	 */
-	public ToneRow(Note[] rowArray) {
-		// TODO: DRY?
-		for(Note n: rowArray) {
+	public ToneRow(NamedNote[] rowArray) {
+		for(NamedNote n: rowArray) {
 			rowSet.add(n);
 		}
 		this.normalize();

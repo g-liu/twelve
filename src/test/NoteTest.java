@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import twelve.Note;
+import twelve.NamedNote;
 import twelve.PitchClass;
 
 /**
@@ -18,17 +18,17 @@ public class NoteTest {
 
 	@Test
 	public void testWhiteNotesCorrespondToPitchClasses() {
-		Note[] whiteKeys = new Note[]{
-				new Note(PitchClass.ZERO,   3),
-				new Note(PitchClass.TWO,    3),
-				new Note(PitchClass.FOUR,   3),
-				new Note(PitchClass.FIVE,   3),
-				new Note(PitchClass.SEVEN,  3),
-				new Note(PitchClass.NINE,   3),
-				new Note(PitchClass.ELEVEN, 3),
+		NamedNote[] whiteKeys = new NamedNote[]{
+				new NamedNote(PitchClass.ZERO),
+				new NamedNote(PitchClass.TWO),
+				new NamedNote(PitchClass.FOUR),
+				new NamedNote(PitchClass.FIVE),
+				new NamedNote(PitchClass.SEVEN),
+				new NamedNote(PitchClass.NINE),
+				new NamedNote(PitchClass.ELEVEN),
 		};
 		String[] expNames = new String[]{
-				"C3", "D3", "E3", "F3", "G3", "A3", "B3"
+				"C", "D", "E", "F", "G", "A", "B"
 		};
 		for(int i = 0; i < whiteKeys.length; i++) {
 			assertEquals("Strings not equal!", expNames[i], whiteKeys[i].toString());
@@ -37,15 +37,15 @@ public class NoteTest {
 	
 	@Test
 	public void testBlackNotesCorrespondToPitchClasses() {
-		Note[] blackKeys = new Note[]{
-				new Note(PitchClass.ONE,   3),
-				new Note(PitchClass.THREE, 3),
-				new Note(PitchClass.SIX,   3),
-				new Note(PitchClass.EIGHT, 3),
-				new Note(PitchClass.TEN,   3),
+		NamedNote[] blackKeys = new NamedNote[]{
+				new NamedNote(PitchClass.ONE),
+				new NamedNote(PitchClass.THREE),
+				new NamedNote(PitchClass.SIX),
+				new NamedNote(PitchClass.EIGHT),
+				new NamedNote(PitchClass.TEN),
 		};
 		String[] expNames = new String[]{
-				"C#3", "D#3", "F#3", "G#3", "A#3"
+				"C#", "D#", "F#", "G#", "A#"
 		};
 		for(int i = 0; i < blackKeys.length; i++) {
 			assertEquals("Strings not equal!", expNames[i], blackKeys[i].toString());
@@ -54,16 +54,16 @@ public class NoteTest {
 	
 	@Test
 	public void testNotesHaveCorrectEnharmonicEquivalents() {
-		Note[] enharmonic = new Note[]{
-				new Note(PitchClass.ZERO,   3), // C
-				new Note(PitchClass.ONE,    3), // C#
-				new Note(PitchClass.THREE,  3), // D#
-				new Note(PitchClass.FOUR,   3), // E
-				new Note(PitchClass.FIVE,   3), // F
-				new Note(PitchClass.SIX,    3), // F#
-				new Note(PitchClass.EIGHT,  3), // G#
-				new Note(PitchClass.TEN,    3), // A#
-				new Note(PitchClass.ELEVEN, 3), // B
+		NamedNote[] enharmonic = new NamedNote[]{
+				new NamedNote(PitchClass.ZERO), // C
+				new NamedNote(PitchClass.ONE), // C#
+				new NamedNote(PitchClass.THREE), // D#
+				new NamedNote(PitchClass.FOUR), // E
+				new NamedNote(PitchClass.FIVE), // F
+				new NamedNote(PitchClass.SIX), // F#
+				new NamedNote(PitchClass.EIGHT), // G#
+				new NamedNote(PitchClass.TEN), // A#
+				new NamedNote(PitchClass.ELEVEN), // B
 		};
 		String[] expNames = new String[]{
 				"B#", "Db", "Eb", "Fb", "E#",
@@ -76,30 +76,13 @@ public class NoteTest {
 	
 	@Test
 	public void testNotesWithoutEnharmonicEquivalentsReturnThemselves() {
-		Note[] nonEnharmonic = new Note[]{
-				new Note(PitchClass.TWO,   3), // D
-				new Note(PitchClass.SEVEN, 3), // G
-				new Note(PitchClass.NINE,  3), // A
+		NamedNote[] nonEnharmonic = new NamedNote[]{
+				new NamedNote(PitchClass.TWO), // D
+				new NamedNote(PitchClass.SEVEN), // G
+				new NamedNote(PitchClass.NINE), // A
 		};
 		for(int i = 0; i < nonEnharmonic.length; i++) {
 			assertEquals("Strings not equal!", nonEnharmonic[i].getNoteName(), nonEnharmonic[i].getEnharmonic());
-		}
-	}
-	
-	@Test
-	public void testNotesInCorrectRegister() {
-		Note[] registers = new Note[]{
-				new Note(PitchClass.EIGHT, -1),
-				new Note(PitchClass.EIGHT, 2),
-				new Note(PitchClass.EIGHT, 3),
-				new Note(PitchClass.EIGHT, 6),
-				new Note(PitchClass.EIGHT, 9),
-		};
-		String[] expNames = new String[]{
-				"G#-1", "G#2", "G#3", "G#6", "G#9"
-		};
-		for(int i = 0; i < registers.length; i++) {
-			assertEquals("Strings not equal!", expNames[i], registers[i].toString());
 		}
 	}
 
