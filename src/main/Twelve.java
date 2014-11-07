@@ -7,8 +7,8 @@ import twelve.Note;
 import twelve.ToneRow;
 
 /**
- * @author Geoffrey
- *
+ * Run the program
+ * @author Geoffrey Liu
  */
 public class Twelve {
 	
@@ -19,11 +19,20 @@ public class Twelve {
 	 */
 	public static void main(String[] argv) {
 		// TODO Auto-generated method stub
-		if(argv[0] == "--help" || argv[0] == "-h") {
+		Note[] notes = parseArgs(argv); 
+		tr = new ToneRow(notes);
+	}
+	
+	/**
+	 * Takes the user inputted args and returns a new Note array
+	 * @param argv
+	 * @return
+	 */
+	public static Note[] parseArgs(String[] argv) {
+		if(argv.length > 0 && (argv[0] == "--help" || argv[0] == "-h")) {
 			printHelp();
 		}
 		
-		// TODO: For now, assume user calls Twelve with 12 notes
 		if(argv.length == 12) {
 			Note[] addToRow = new Note[12];
 			int i = 0;
@@ -39,8 +48,9 @@ public class Twelve {
 			
 			tr = new ToneRow(addToRow);
 			
-			System.out.println(tr);
+			System.out.println("Tone row added");
 		}
+		return null;
 	}
 	
 	public static void printHelp() {
