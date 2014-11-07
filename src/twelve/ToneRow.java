@@ -1,6 +1,5 @@
 package twelve;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -11,9 +10,9 @@ import java.util.Set;
  * 	enforced by the Set-backed structure of the ToneRow.
  * @author Geoffrey Liu
  */
-public class ToneRow
+public class ToneRow<E extends Note>
 {
-	private Set<NamedNote> rowSet;
+	private Set<E> rowSet;
 	
 	private final boolean DEBUG = false;
 	
@@ -21,8 +20,9 @@ public class ToneRow
 	 * Create a new ToneRow using elements from an existing NamedNote array
 	 * @param rowArray the array containing the notes
 	 */
-	public ToneRow(NamedNote[] rowArray) {
-		for(NamedNote n: rowArray) {
+	public ToneRow(E[] rowArray) {
+		rowSet = new LinkedHashSet<E>();
+		for(E n: rowArray) {
 			rowSet.add(n);
 		}
 		this.normalize();
@@ -41,7 +41,7 @@ public class ToneRow
 	 * Returns the retrograde form of this tone row
 	 * @return the tone row, in retrograde
 	 */
-	public ToneRow retrograde() {
+	public ToneRow<E> retrograde() {
 		// TODO: Implement
 		return null;
 		
@@ -51,7 +51,7 @@ public class ToneRow
 	 * Returns the inversion of this tone row
 	 * @return the tone row, inverted
 	 */
-	public ToneRow inversion() {
+	public ToneRow<E> inversion() {
 		// TODO: Implement
 		return null;
 		
@@ -61,13 +61,14 @@ public class ToneRow
 	 * Returns the retrograde inversion of this tone row
 	 * @return the row, in retrograde inversion form
 	 */
-	public ToneRow retrogradeInversion() {
+	public ToneRow<E> retrogradeInversion() {
 		return this.retrograde().inversion();
 		
 	}
 	
 	@Override
 	public String toString() {
+		// TODO: Custom implementation for command line
 		return rowSet.toString();
 	}
 	

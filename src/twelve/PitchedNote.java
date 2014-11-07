@@ -31,15 +31,20 @@ public class PitchedNote implements Note {
 		this.pc = pc;
 	}
 	
-
+	/**
+	 * Constructs a new instance of PitchedNote, given a NamedNote
+	 * @param note the NamedNote
+	 */
+	public PitchedNote(NamedNote note) {
+		this.pc = note.getPitchClass();
+	}
 
 	/* (non-Javadoc)
 	 * @see twelve.Note#getPitchClass()
 	 */
 	@Override
 	public PitchClass getPitchClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return pc;
 	}
 
 	/* (non-Javadoc)
@@ -59,5 +64,8 @@ public class PitchedNote implements Note {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	public String toString() {
+		return pc.toString();
+	}
 }

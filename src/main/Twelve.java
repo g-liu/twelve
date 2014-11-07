@@ -6,6 +6,7 @@ package main;
 import java.util.Arrays;
 
 import twelve.NamedNote;
+import twelve.PitchedNote;
 import twelve.ToneRow;
 
 /**
@@ -14,7 +15,7 @@ import twelve.ToneRow;
  */
 public class Twelve {
 	
-	private static ToneRow tr;
+	private static ToneRow<NamedNote> tr;
 
 	/**
 	 * @param args
@@ -22,8 +23,12 @@ public class Twelve {
 	public static void main(String[] argv) {
 		// TODO Auto-generated method stub
 		NamedNote[] notes = parseArgs(argv); 
+		PitchedNote[] notesPitched = new PitchedNote[12];
+		for(int i = 0; i < notes.length; i++) {
+			notesPitched[i] = new PitchedNote(notes[i]);
+		}
 		System.out.println(Arrays.toString(notes));
-		tr = new ToneRow(notes);
+		tr = new ToneRow<NamedNote>(notes);
 	}
 	
 	/**
