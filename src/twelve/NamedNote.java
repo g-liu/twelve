@@ -152,6 +152,7 @@ public class NamedNote implements Note {
 	 * Gets the PitchClass of this note
 	 * @return the associated PitchClass
 	 */
+	@Override
 	public PitchClass getPitchClass() {
 		return pitchClass;
 	}
@@ -223,6 +224,7 @@ public class NamedNote implements Note {
 	 * @param interval the interval to which to transpose the NamedNote
 	 * @return a NamedNote representing the resultant transposition.
 	 */
+	@Override
 	public NamedNote transpose(int interval) {
 		// TODO: Implement
 		return null;
@@ -234,7 +236,8 @@ public class NamedNote implements Note {
 	 * @param otherNote
 	 * @return
 	 */
-	public int intervalTo(NamedNote otherNote) {
+	@Override
+	public int intervalTo(Note otherNote) {
 		// TODO: Implement
 		return 0;
 	}
