@@ -10,6 +10,7 @@ package twelve;
  */
 public class PitchedNote implements Note {
 	
+	/** The pitch class of this note */
 	PitchClass pc;
 	
 	/**

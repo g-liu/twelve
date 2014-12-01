@@ -29,67 +29,69 @@ public class NamedNote implements Note {
 	 * @param reg the register that this NamedNote belongs to. Must not be null
 	 */
 	public NamedNote(PitchClass pc) {
-		// TODO: Implement
 		this.pitchClass = pc;
 		StringBuilder repBuilder = new StringBuilder();
 		StringBuilder otherBuilder = new StringBuilder();
 		switch(pc) {
-		// TODO: Build the string representation
-		case ONE:
-			repBuilder.append("#");
-			otherBuilder.append("Db");
-		case ZERO:
-			repBuilder.insert(0, "C");
-			if(otherBuilder.length() == 0) {
-				otherBuilder.append("B#");
-			}
-			break;
-		case THREE:
-			repBuilder.append("#");
-			otherBuilder.append("Eb");
-		case TWO:
-			repBuilder.insert(0, "D");
-			break;
-		case FOUR:
-			repBuilder.append("E");
-			otherBuilder.append("Fb");
-			break;
-		case SIX:
-			repBuilder.append("#");
-			otherBuilder.append("Gb");
-		case FIVE:
-			repBuilder.insert(0, "F");
-			if(otherBuilder.length() == 0) {
-				otherBuilder.append("E#");
-			}
-			break;
-		case EIGHT:
-			repBuilder.append("#");
-			otherBuilder.append("Ab");
-		case SEVEN:
-			repBuilder.insert(0, "G");
-			break;
-		case TEN:
-			repBuilder.append("#");
-			otherBuilder.append("Bb");
-		case NINE:
-			repBuilder.insert(0, "A");
-			break;
-		case ELEVEN:
-			repBuilder.append("B");
-			otherBuilder.append("Cb");
-		default:
-			break;
+			case ONE:
+				repBuilder.append("#");
+				otherBuilder.append("Db");
+			case ZERO:
+				repBuilder.insert(0, "C");
+				if(otherBuilder.length() == 0) {
+					otherBuilder.append("B#");
+				}
+				break;
+			case THREE:
+				repBuilder.append("#");
+				otherBuilder.append("Eb");
+			case TWO:
+				repBuilder.insert(0, "D");
+				break;
+			case FOUR:
+				repBuilder.append("E");
+				otherBuilder.append("Fb");
+				break;
+			case SIX:
+				repBuilder.append("#");
+				otherBuilder.append("Gb");
+			case FIVE:
+				repBuilder.insert(0, "F");
+				if(otherBuilder.length() == 0) {
+					otherBuilder.append("E#");
+				}
+				break;
+			case EIGHT:
+				repBuilder.append("#");
+				otherBuilder.append("Ab");
+			case SEVEN:
+				repBuilder.insert(0, "G");
+				break;
+			case TEN:
+				repBuilder.append("#");
+				otherBuilder.append("Bb");
+			case NINE:
+				repBuilder.insert(0, "A");
+				break;
+			case ELEVEN:
+				repBuilder.append("B");
+				otherBuilder.append("Cb");
+			default:
+				break;
 		}
 		
 		stringRep = repBuilder.toString();
 		otherStringRep = otherBuilder.length() > 0 ? otherBuilder.toString() : stringRep;
 	}
 	
-	// TODO: Specify format in @param
 	/**
 	 * Creates a new NamedNote based on a String representation of the note
-	 * @param note the String representing the NamedNote to be created.
+	 * @param note the String representing the NamedNote to be created. The format of the
+	 *  Note should be as follows:
+	 *  <ul>
+	 *  	<li>First character: [A-G]</li>
+	 *  	<li>Second character (optional): [#bx♯♭♮], or either of U+1D12B, U+1D12A</li>
+	 *  </ul> 
 	 * @throws IllegalArgumentException if the parameter is not of a valid format.
 	 */
 	public NamedNote(String note) throws IllegalArgumentException {
@@ -112,26 +114,27 @@ public class NamedNote implements Note {
 		int pitchClassNum = 0;
 		
 		switch(noteParse[0]) {
-		case "A": pitchClassNum = 9; break;
-		case "B": pitchClassNum = 11; break;
-		case "C": pitchClassNum = 0; break;
-		case "D": pitchClassNum = 2; break;
-		case "E": pitchClassNum = 4; break;
-		case "F": pitchClassNum = 5; break;
-		case "G": pitchClassNum = 7; break;
-		default: throw new IllegalArgumentException("NamedNote name " + noteParse[1] + " is invalid. NamedNote names must be one of (A, B, C, D, E, F, or G).");
+			case "A": pitchClassNum = 9; break;
+			case "B": pitchClassNum = 11; break;
+			case "C": pitchClassNum = 0; break;
+			case "D": pitchClassNum = 2; break;
+			case "E": pitchClassNum = 4; break;
+			case "F": pitchClassNum = 5; break;
+			case "G": pitchClassNum = 7; break;
+			default: throw new IllegalArgumentException("NamedNote name " + noteParse[1] + " is invalid. NamedNote names must be one of (A, B, C, D, E, F, or G).");
 		}
 		
+		// parse the accidental
 		if(noteParse.length > 1) {
 			switch(noteParse[1]) {
-			case "#":
-			case "♯": pitchClassNum++; break;
-			case "b": 
-			case "♭": pitchClassNum--; break;
-			case "x": 
-			case "𝄪": pitchClassNum += 2; break; // double sharp
-			case "𝄫": pitchClassNum -= 2; break; // double flat
-			default: throw new IllegalArgumentException("Invalid note modifier " + noteParse[1]);
+				case "#":
+				case "♯": pitchClassNum++; break;
+				case "b": 
+				case "♭": pitchClassNum--; break;
+				case "x": 
+				case "𝄪": pitchClassNum += 2; break; // double sharp
+				case "𝄫": pitchClassNum -= 2; break; // double flat
+				default: throw new IllegalArgumentException("Invalid note modifier " + noteParse[1]);
 			}
 		}
 		

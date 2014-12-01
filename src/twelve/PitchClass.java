@@ -32,8 +32,13 @@ public enum PitchClass {
 	TEN(10),
 	ELEVEN(11);
 	
+	/** The degree of the PitchClass. Degree 0 = C, Degree 1 = C#, and so on */
 	private final int degree;
 	
+	/**
+	 * Construct a new PitchClass
+	 * @param degree the degree number
+	 */
 	private PitchClass(int degree) {
 		this.degree = degree;
 	}

@@ -4,7 +4,7 @@
 package twelve;
 
 /**
- * A note.
+ * A generic note.
  * @author Geoffrey Liu
  */
 public interface Note {

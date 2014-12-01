@@ -10,10 +10,12 @@ import java.util.Set;
  * 	enforced by the Set-backed structure of the ToneRow.
  * @author Geoffrey Liu
  */
-public class ToneRow<E extends Note>
-{
+public class ToneRow<E extends Note> {
+	
+	/** The tone row */
 	private Set<E> rowSet;
 	
+	/** Internal debug flag */
 	private final boolean DEBUG = false;
 	
 	/**
@@ -66,12 +68,18 @@ public class ToneRow<E extends Note>
 		
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		// TODO: Custom implementation for command line
 		return rowSet.toString();
 	}
 	
+	/**
+	 * Internal method to check the representation
+	 */
 	private void checkRep() {
 		if(DEBUG) {
 			assert rowSet.size() == 12 : "Row does not have 12 pitches";
