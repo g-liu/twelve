@@ -1,46 +1,63 @@
-/**
- * 
- */
 package twelve;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Geoffrey Liu
  *
  */
-public final class NoteLetter {
-	private static List<String> letterNames;
+public enum NoteLetter {
+	C('C'),
+	D('D'),
+	E('E'),
+	F('F'),
+	G('G'),
+	A('A'),
+	B('B');
 	
-	private NoteLetter() {
-		letterNames = new ArrayList<String>();
-		letterNames.add("C");
-		letterNames.add("D");
-		letterNames.add("E");
-		letterNames.add("F");
-		letterNames.add("G");
-		letterNames.add("A");	
-		letterNames.add("B");
+	/** Representation of the note letter */
+	@SuppressWarnings("unused")
+	private final char LETTER;
+	
+	/**
+	 * Creates a new NoteLetter. Solely for internal use.
+	 * @param letter the character representing the note letter
+	 */
+	private NoteLetter(char letter) {
+		this.LETTER = letter;
+	}
+	
+	/**
+	 * @see {@link #nextNote(NoteLetter)}
+	 * @throws IllegalArgumentException if the specified enum type has no constant with the specified name, or the specified class object does not represent an enum type
+	 * @throws NullPointerException if enumType or name is null
+	 */
+	public static NoteLetter nextNote(String current) {
+		return nextNote(NoteLetter.valueOf(current));
 	}
 	
 	/**
 	 * The next note letter after the current
 	 * @param current the current note
-	 * @return
+	 * @return the NoteLetter enum representing the note letter that succeeds the current note letter
 	 */
-	public static String nextNote(String current) {
-		int currIndex = letterNames.indexOf(current);
-		return letterNames.get((currIndex + 1) % letterNames.size());
+	public static NoteLetter nextNote(NoteLetter current) {
+		return NoteLetter.values()[(current.ordinal() + 1) % NoteLetter.values().length];
+	}
+	
+	/**
+	 * @see {@link #previousNote(NoteLetter)}
+	 * @throws IllegalArgumentException if the specified enum type has no constant with the specified name, or the specified class object does not represent an enum type
+	 * @throws NullPointerException if enumType or name is null
+	 */
+	public static NoteLetter previousNote(String current) {
+		return previousNote(NoteLetter.valueOf(current));
 	}
 	
 	/**
 	 * The previous note letter before the current
 	 * @param current the current note
-	 * @return
+	 * @return the NoteLetter enum representing the note letter that precedes the current note letter
 	 */
-	public static String previousNote(String current) {
-		int currIndex = letterNames.indexOf(current);
-		return letterNames.get((currIndex + 1) % letterNames.size());
+	public static NoteLetter previousNote(NoteLetter current) {
+		return NoteLetter.values()[(current.ordinal() + NoteLetter.values().length - 1) % NoteLetter.values().length];
 	}
 }

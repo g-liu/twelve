@@ -16,6 +16,7 @@ import twelve.ToneRow;
  *
  */
 public class ToneRowTest {
-
-	// TODO: This test will need to be rewritten, as ToneRow implementation has changed...
+	ToneRow<NamedNote> trn;
+	
+	
 }

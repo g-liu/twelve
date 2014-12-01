@@ -260,7 +260,7 @@ public class NamedNote implements Note {
 	 */
 	@Override
 	public int hashCode() {
-		return this.pitchClass.degree() * 37 - (this.pitchClass.degree() - 5) * 31;
+		return this.pitchClass.hashCode();
 	}
 
 	/**

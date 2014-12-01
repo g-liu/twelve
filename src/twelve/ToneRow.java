@@ -1,5 +1,9 @@
 package twelve;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -23,30 +27,26 @@ public class ToneRow<E extends Note> {
 	 * @param rowArray the array containing the notes
 	 */
 	public ToneRow(E[] rowArray) {
+		if(rowArray.length != 12) {
+			throw new IllegalArgumentException("Tone row must consist of exactly 12 notes");
+		}
+		
 		rowSet = new LinkedHashSet<E>();
 		for(E n: rowArray) {
 			rowSet.add(n);
 		}
-		this.normalize();
 		checkRep();
-	}
-	
-	/**
-	 * Normalizes this row such that all pitches are contained within one octave.
-	 */
-	private void normalize() {
-		// TODO: Implement
-		throw new UnsupportedOperationException("Error: Not yet implemented");
 	}
 	
 	/**
 	 * Returns the retrograde form of this tone row
 	 * @return the tone row, in retrograde
 	 */
+	@SuppressWarnings("unchecked")
 	public ToneRow<E> retrograde() {
-		// TODO: Implement
-		return null;
-		
+		List<E> sort = new ArrayList<E>(rowSet);
+		Collections.reverse(sort);
+		return new ToneRow<E>((E[]) sort.toArray());
 	}
 	
 	/**

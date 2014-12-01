@@ -14,7 +14,7 @@ import twelve.PitchClass;
  * @author Geoffrey
  *
  */
-public class NoteTest {
+public class NamedNoteTest {
 
 	@Test
 	public void testWhiteNotesCorrespondToPitchClasses() {
