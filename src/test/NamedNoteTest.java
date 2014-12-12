@@ -15,6 +15,55 @@ import twelve.PitchClass;
  *
  */
 public class NamedNoteTest {
+	
+	@Test
+	public void createNamedNoteFromWhiteKeys() {
+		NamedNote c = new NamedNote("C");
+		NamedNote d = new NamedNote("D");
+		NamedNote e = new NamedNote("E");
+		NamedNote f = new NamedNote("F");
+		NamedNote g = new NamedNote("G");
+		NamedNote a = new NamedNote("A");
+		NamedNote b = new NamedNote("B");
+		
+		assertEquals("C", c.getNoteName());
+		assertEquals("D", d.getNoteName());
+		assertEquals("E", e.getNoteName());
+		assertEquals("F", f.getNoteName());
+		assertEquals("G", g.getNoteName());
+		assertEquals("A", a.getNoteName());
+		assertEquals("B", b.getNoteName());
+	}
+	
+	@Test
+	public void createNamedNoteFromBlackSharpKeys() {
+		NamedNote cs = new NamedNote("C#");
+		NamedNote ds = new NamedNote("D#");
+		NamedNote fs = new NamedNote("F#");
+		NamedNote gs = new NamedNote("G#");
+		NamedNote as = new NamedNote("A#");
+		
+		assertEquals("C#", cs.getNoteName());
+		assertEquals("D#", ds.getNoteName());
+		assertEquals("F#", fs.getNoteName());
+		assertEquals("G#", gs.getNoteName());
+		assertEquals("A#", as.getNoteName());
+	}
+	
+	@Test
+	public void createNamedNoteFromBlackFlatKeys() {
+		NamedNote df = new NamedNote("Db");
+		NamedNote ef = new NamedNote("Eb");
+		NamedNote gf = new NamedNote("Gb");
+		NamedNote af = new NamedNote("Ab");
+		NamedNote bf = new NamedNote("Bb");
+		
+		assertEquals("Db", df.getNoteName());
+		assertEquals("Eb", ef.getNoteName());
+		assertEquals("Gb", gf.getNoteName());
+		assertEquals("Ab", af.getNoteName());
+		assertEquals("Bb", bf.getNoteName());
+	}
 
 	@Test
 	public void testWhiteNotesCorrespondToPitchClasses() {

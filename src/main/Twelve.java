@@ -3,7 +3,12 @@
  */
 package main;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import twelve.NamedNote;
 import twelve.PitchedNote;
@@ -21,8 +26,22 @@ public class Twelve {
 	 * @param args
 	 */
 	public static void main(String[] argv) {
-		// TODO Auto-generated method stub
-		NamedNote[] notes = parseArgs(argv); 
+		Scanner s = new Scanner(System.in);
+		NamedNote[] notes = new NamedNote[12];
+		if(argv.length != 12) {
+			// prompt user from system.in
+			for(int i = 0; i < notes.length; i++) {
+				System.out.print(String.format("Note %d: ", i + 1));
+				notes[i] = new NamedNote(s.nextLine());
+			}
+			s.close();
+		}
+		else {
+			notes = parseArgs(argv);
+		}
+		
+		assert notes.length == 12;
+		
 		PitchedNote[] notesPitched = new PitchedNote[12];
 		for(int i = 0; i < notes.length; i++) {
 			notesPitched[i] = new PitchedNote(notes[i]);

@@ -90,24 +90,25 @@ public class NamedNote implements Note {
 	 *  Note should be as follows:
 	 *  <ul>
 	 *  	<li>First character: [A-G]</li>
-	 *  	<li>Second character (optional): [#bx♯♭♮], or either of U+1D12B, U+1D12A</li>
+	 *  	<li>Second character (optional): A note modifier, one of the following:
+	 *  		b or ♭ (flat)
+	 *  		# or ♯ (sharp)
+	 *  		♮ (natural)
+	 *  		x, ##, or ♯♯ (double sharp)
+	 *  		bb or ♭♭ (double flat)
+	 *  	</li>
 	 *  </ul> 
+	 *  
+	 *  If the Note contains a double-sharp or a double-flat, the representation will
+	 *  be normalized such that the note will not have said modifier. For example,
+	 *  A## will be normalized to B (natural).
 	 * @throws IllegalArgumentException if the parameter is not of a valid format.
 	 */
 	public NamedNote(String note) throws IllegalArgumentException {
-		String[] noteParse = note.split("", 3);
-		// check the representation. noteParse[0] should contain the note name from A-G,
-		// noteParse[1], if it exists, should contain one of eight modifiers:
-		// b or ♭ (flat)
-		// # or ♯ (sharp)
-		// ♮ (natural)
-		// U+1D12B (double flat)
-		// x or U+1D12A (double sharp)
-		// in the case of the latter two, this constructor will normalize the
-		// note name as to not use double-flat or double-sharp. For example,
-		// A-double-sharp will be normalized to B.
+		String[] noteParse = note.split("(?!^)", 2);
+		
 		if(noteParse.length == 0) {
-			throw new IllegalArgumentException("The note name " + note + " is invalid.");
+			throw new IllegalArgumentException("Note name cannot be empty");
 		}
 		noteParse[0] = noteParse[0].toUpperCase();
 		
@@ -121,23 +122,24 @@ public class NamedNote implements Note {
 			case "E": pitchClassNum = 4; break;
 			case "F": pitchClassNum = 5; break;
 			case "G": pitchClassNum = 7; break;
-			default: throw new IllegalArgumentException("NamedNote name " + noteParse[1] + " is invalid. NamedNote names must be one of (A, B, C, D, E, F, or G).");
+			default: throw new IllegalArgumentException("Invalid note name: " + noteParse[0]);
 		}
 		
-		// parse the accidental
-		if(noteParse.length > 1) {
+		// parse the accidental, if there is any
+		if(noteParse.length > 1 && noteParse[1].length() > 0) {
 			switch(noteParse[1]) {
 				case "#":
 				case "♯": pitchClassNum++; break;
 				case "b": 
 				case "♭": pitchClassNum--; break;
 				case "x": 
-				case "𝄪": pitchClassNum += 2; break; // double sharp
-				case "𝄫": pitchClassNum -= 2; break; // double flat
+				case "##": pitchClassNum += 2; break; // double sharp
+				case "bb": pitchClassNum -= 2; break; // double flat
 				default: throw new IllegalArgumentException("Invalid note modifier " + noteParse[1]);
 			}
 		}
 		
+		// TODO: Normalize note name
 		stringRep = noteParse[0] + noteParse[1];
 		otherStringRep = this.getEnharmonic(stringRep);
 		pitchClass = PitchClass.getPitchClass(pitchClassNum % 12);
