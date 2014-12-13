@@ -15,7 +15,7 @@ import java.util.Set;
  * 	enforced by the Set-backed structure of the ToneRow.
  * @author Geoffrey Liu
  */
-public class ToneRow<E extends Note> {
+public class ToneRow<E extends Note> implements Iterable<E> {
 	
 	/** The tone row */
 	private Set<E> rowSet;
@@ -90,7 +90,7 @@ public class ToneRow<E extends Note> {
 		}
 		List<E> notes = new ArrayList<E>(rowSet);
 		for(int i = 0; i < notes.size(); i++) {
-			notes.get(i).transpose(interval);
+			notes.set(i, (E) notes.get(i).transpose(interval));
 		}
 		return new ToneRow<E>(notes);
 	}
@@ -121,6 +121,11 @@ public class ToneRow<E extends Note> {
 	public ToneRow<E> retrogradeInversion() {
 		return this.retrograde().inversion();
 		
+	}
+	
+	@Override
+	public Iterator<E> iterator() {
+		return rowSet.iterator();
 	}
 	
 	/**

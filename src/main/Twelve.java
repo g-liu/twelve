@@ -57,7 +57,6 @@ public class Twelve {
 		rowMatrix.add(base);
 		for(int i = 1; i < 12; i++) {
 			int interval = base.first().intervalTo(base.get(i));
-			System.out.println(interval);
 			rowMatrix.add(base.transposition(interval));
 		}
 		
@@ -84,9 +83,14 @@ public class Twelve {
 	}
 
 	private static void printMatrix(List<ToneRow<NamedNote>> mat) {
-		// TODO implement
 		for(ToneRow<NamedNote> row : mat) {
-			System.out.println(row);
+			System.out.println("-------------------------------------");
+			System.out.print("|");
+			for(NamedNote note : row) {
+				System.out.print(String.format("%1$-2s|", note.toString()));
+			}
+			System.out.println();
 		}
+		System.out.println("-------------------------------------");
 	}
 }

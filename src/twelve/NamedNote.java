@@ -5,8 +5,8 @@ package twelve;
 
 /**
  * A NamedNote represents a defined pitch. This class is immutable.
- * https://en.wikipedia.org/wiki/NamedNote#Note_designation_in_accordance_with_octave_name
- * @author Geoffrey
+ * https://en.wikipedia.org/wiki/NamedNote`
+ * @author Geoffrey Liu
  */
 public class NamedNote extends AbstractNote {
 	/** The pitch class to which this note belongs. */

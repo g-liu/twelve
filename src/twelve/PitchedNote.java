@@ -6,7 +6,6 @@ package twelve;
 /**
  * A Note with a PitchClass, but not a name.
  * @author Geoffrey Liu
- *
  */
 public class PitchedNote extends AbstractNote {
 	
