@@ -23,6 +23,21 @@ public class PitchedNote implements Note {
 		}
 		this.pc = PitchClass.getPitchClass(pitchClass);
 	}
+	
+	/**
+	 * Constructs a new instance of PitchedNote. This method is provided, as some
+	 *  musical sources specify 't' = 10, 'e' = 11, or A = 10, B = 11.
+	 * @param note the character representing the PitchedNote. Must be one of: [teAB]
+	 */
+	public PitchedNote(char note) {
+		switch(note) {
+			case 'A':
+			case 't': this.pc = PitchClass.TEN;
+			case 'B':
+			case 'e': this.pc = PitchClass.ELEVEN;
+			default: throw new IllegalArgumentException("Invalid pitch class: " + note);
+		}
+	}
 
 	/**
 	 * Constructs a new instance of PitchedNote

@@ -254,7 +254,10 @@ public class NamedNote implements Note {
 	 */
 	@Override
 	public boolean equals(Object n) {
-		return this.pitchClass.degree() == ((NamedNote) n).pitchClass.degree();
+		if(!(n instanceof Note)) {
+			return false;
+		}
+		return this.pitchClass.degree() == ((Note) n).getPitchClass().degree();
 	}
 	
 	/**

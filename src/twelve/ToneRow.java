@@ -2,6 +2,7 @@ package twelve;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -31,11 +32,67 @@ public class ToneRow<E extends Note> {
 			throw new IllegalArgumentException("Tone row must consist of exactly 12 notes");
 		}
 		
-		rowSet = new LinkedHashSet<E>();
-		for(E n: rowArray) {
-			rowSet.add(n);
-		}
+		rowSet = new LinkedHashSet<E>(Arrays.asList(rowArray));
 		checkRep();
+	}
+	
+	/**
+	 * Create a new ToneRow using elements from an existing 
+	 * @param rowList
+	 */
+	public ToneRow(List<E> rowList) {
+		if(rowList.size() != 12) {
+			throw new IllegalArgumentException("Tone row must consist of exactly 12 notes");
+		}
+		
+		rowSet = new LinkedHashSet<E>(rowList);
+		checkRep();
+	}
+	
+	/**
+	 * Retrieve the i-th note in the ToneRow
+	 * @param i the number of notes from the beginning of the tone row. Must be in the range
+	 *  of [0..11]
+	 * @return the i-th note in the ToneRow
+	 */
+	public Note get(int i) {
+		if(i < 0 || i >= 12) {
+			throw new ArrayIndexOutOfBoundsException();
+		}
+		int currentIndex = 0;
+		for(Iterator<E> itr = rowSet.iterator(); itr.hasNext();) {
+			Note n = itr.next();
+			if(currentIndex++ == i) {
+				return n;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Retrieves the first Note of the ToneRow
+	 * @return the first note
+	 */
+	public Note first() {
+		return rowSet.iterator().next();
+	}
+	
+	/**
+	 * Returns a new ToneRow consisting of the original notes of the tone row transposed up
+	 *  by the indicated number of half steps.
+	 * @param the interval at which to transpose
+	 * @return a new ToneRow as described above, or this if interval == 0
+	 */
+	public ToneRow<E> transposition(int interval) {
+		// ignore spurious requests.
+		if(interval == 0) {
+			return this;
+		}
+		List<E> notes = new ArrayList<E>(rowSet);
+		for(int i = 0; i < notes.size(); i++) {
+			notes.get(i).transpose(interval);
+		}
+		return new ToneRow<E>(notes);
 	}
 	
 	/**
@@ -54,9 +111,10 @@ public class ToneRow<E extends Note> {
 	 * @return the tone row, inverted
 	 */
 	public ToneRow<E> inversion() {
-		// TODO: Implement
-		return null;
-		
+		for(E note : rowSet) {
+			// TODO: Implement
+		}
+		throw new UnsupportedOperationException("Not yet implemented.");
 	}
 	
 	/**
@@ -73,7 +131,6 @@ public class ToneRow<E extends Note> {
 	 */
 	@Override
 	public String toString() {
-		// TODO: Custom implementation for command line
 		return rowSet.toString();
 	}
 	

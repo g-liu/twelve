@@ -1,13 +1,8 @@
-/**
- * 
- */
 package main;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import twelve.NamedNote;
@@ -20,19 +15,30 @@ import twelve.ToneRow;
  */
 public class Twelve {
 	
-	private static ToneRow<NamedNote> tr;
+	/**
+	 * Holds a representation of the ToneRow matrix.
+	 * Each entry represents a row in the matrix.
+	 */
+	private static List<ToneRow<NamedNote>> rowMatrix;
 
 	/**
-	 * @param args
+	 * @param args command-line args
 	 */
 	public static void main(String[] argv) {
 		Scanner s = new Scanner(System.in);
-		NamedNote[] notes = new NamedNote[12];
+		List<NamedNote> notes = new ArrayList<NamedNote>(12);
 		if(argv.length != 12) {
 			// prompt user from system.in
-			for(int i = 0; i < notes.length; i++) {
-				System.out.print(String.format("Note %d: ", i + 1));
-				notes[i] = new NamedNote(s.nextLine());
+			System.out.println("Enter notes (q to quit)");
+			String rawInput;
+			for(int i = 0; i < 12; i++) {
+				NamedNote named = null;
+				while(named == null || notes.contains(named)) {
+					System.out.print(String.format("Note %d: ", i + 1));
+					rawInput = s.nextLine();
+					named = new NamedNote(rawInput);
+				}
+				notes.add(named);
 			}
 			s.close();
 		}
@@ -40,14 +46,17 @@ public class Twelve {
 			notes = parseArgs(argv);
 		}
 		
-		assert notes.length == 12;
+		assert notes.size() == 12;
+		rowMatrix = new ArrayList<ToneRow<NamedNote>>(12);
 		
-		PitchedNote[] notesPitched = new PitchedNote[12];
-		for(int i = 0; i < notes.length; i++) {
-			notesPitched[i] = new PitchedNote(notes[i]);
+		ToneRow<NamedNote> base = new ToneRow<NamedNote>(notes);
+		rowMatrix.add(base);
+		for(int i = 1; i < 12; i++) {
+			int interval = base.first().intervalTo(base.get(i));
+			rowMatrix.add(base.transposition(interval));
 		}
-		System.out.println(Arrays.toString(notes));
-		tr = new ToneRow<NamedNote>(notes);
+		
+		printMatrix(rowMatrix);
 	}
 	
 	/**
@@ -55,22 +64,24 @@ public class Twelve {
 	 * @param argv
 	 * @return the NamedNote array from the user args
 	 */
-	public static NamedNote[] parseArgs(String[] argv) {
-		if(argv.length == 12) {
-			NamedNote[] addToRow = new NamedNote[12];
-			int i = 0;
+	public static List<NamedNote> parseArgs(String[] argv) {
+		List<NamedNote> addToRow = new ArrayList<NamedNote>();
+
+		try {
 			for(String noteName : argv) {
-				try {
-					NamedNote toAdd = new NamedNote(noteName);
-					addToRow[i++] = toAdd;
-				}
-				catch(IllegalArgumentException iae) {
-					iae.printStackTrace();
-				}
+				addToRow.add(new NamedNote(noteName));
 			}
-			return addToRow;
 		}
-		return null;
+		catch(IllegalArgumentException iae) {
+			iae.printStackTrace();
+		}
+		return addToRow;
 	}
 
+	private static void printMatrix(List<ToneRow<NamedNote>> mat) {
+		// TODO implement
+		for(ToneRow<NamedNote> row : mat) {
+			System.out.println(row);
+		}
+	}
 }
