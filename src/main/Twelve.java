@@ -24,31 +24,8 @@ public class Twelve {
 	 */
 	public static void main(String[] argv) {
 		Scanner s = new Scanner(System.in);
-		List<NamedNote> notes = new ArrayList<NamedNote>(12);
-		if(argv.length != 12) {
-			// prompt user from system.in
-			System.out.println("Enter notes (q to quit)");
-			String rawInput;
-			for(int i = 0; i < 12; i++) {
-				NamedNote named = null;
-				while(named == null || notes.contains(named)) {
-					System.out.print(String.format("Note %d: ", i + 1));
-					rawInput = s.nextLine();
-					try {
-						named = new NamedNote(rawInput);
-					}
-					catch(IllegalArgumentException iae) {
-						named = null;
-						System.err.println("Invalid note: " + rawInput);
-					}
-				}
-				notes.add(named);
-			}
-			s.close();
-		}
-		else {
-			notes = parseArgs(argv);
-		}
+		List<NamedNote> notes;
+		notes = parseArgs(argv);
 		
 		assert notes.size() == 12;
 		rowMatrix = new ArrayList<ToneRow<NamedNote>>(12);
