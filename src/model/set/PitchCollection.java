@@ -7,10 +7,12 @@ import java.util.Set;
 import model.note.Note;
 
 /**
+ * A pitch collection is a set of distinct pitch classes.
  * @author Geoffrey Liu
  */
 public class PitchCollection<E extends Note> extends AbstractSetClass<E> {
-	
+
+	/** The pitch collection */
 	private Set<E> pitchCollection;
 
 	/**
@@ -23,8 +25,7 @@ public class PitchCollection<E extends Note> extends AbstractSetClass<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return pitchCollection.iterator();
 	}
 
 }

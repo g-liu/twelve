@@ -15,11 +15,11 @@ import model.set.ToneRow;
 import org.junit.Test;
 
 /**
- * @author Geoffrey
+ * @author Geoffrey Liu
  *
  */
 public class ToneRowTest {
-	ToneRow<? extends Note> trn;
+	private ToneRow<? extends Note> trn;
 	
 	@Test
 	public void initializeToneRow() {
