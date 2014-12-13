@@ -1,11 +1,10 @@
 package test;
 
 import static org.junit.Assert.*;
+import model.NamedNote;
+import model.PitchClass;
 
 import org.junit.Test;
-
-import twelve.NamedNote;
-import twelve.PitchClass;
 
 /**
  * @author Geoffrey Liu

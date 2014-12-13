@@ -1,7 +1,7 @@
 /**
  * 
  */
-package twelve;
+package model;
 
 /**
  * An enum representing a certain pitch class.

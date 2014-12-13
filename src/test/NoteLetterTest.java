@@ -1,10 +1,9 @@
 package test;
 
 import static org.junit.Assert.*;
+import model.NoteLetter;
 
 import org.junit.Test;
-
-import twelve.NoteLetter;
 
 public class NoteLetterTest {
 

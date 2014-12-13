@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import twelve.NamedNote;
-import twelve.ToneRow;
+import model.NamedNote;
+import model.ToneRow;
 
 /**
  * Run the program

@@ -4,7 +4,7 @@
 package main;
 
 /**
- * user interface for twelve tone analyzer
+ * user interface for model tone analyzer
  * @author Geoffrey Liu
  *
  */

@@ -1,4 +1,4 @@
-package twelve;
+package model;
 
 /**
  * @author Geoffrey Liu

@@ -1,4 +1,4 @@
-package twelve;
+package model;
 
 /**
  * A generic note.

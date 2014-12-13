@@ -1,4 +1,4 @@
-package twelve;
+package model;
 
 /**
  * @author Geoffrey Liu
@@ -7,19 +7,19 @@ package twelve;
 public abstract class AbstractNote implements Note {
 
 	/**
-	 * @see twelve.Note#getPitchClass()
+	 * @see model.Note#getPitchClass()
 	 */
 	@Override
 	public abstract PitchClass getPitchClass();
 
 	/**
-	 * @see twelve.Note#transpose(int)
+	 * @see model.Note#transpose(int)
 	 */
 	@Override
 	public abstract Note transpose(int interval);
 
 	/**
-	 * @see twelve.Note#intervalTo(twelve.Note)
+	 * @see model.Note#intervalTo(model.Note)
 	 */
 	@Override
 	public int intervalTo(Note otherNote) {

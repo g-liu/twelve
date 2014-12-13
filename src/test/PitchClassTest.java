@@ -1,10 +1,9 @@
 package test;
 
 import static org.junit.Assert.*;
+import model.PitchClass;
 
 import org.junit.Test;
-
-import twelve.PitchClass;
 
 /**
  * @author Geoffrey Liu *

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package twelve;
+package model;
 
 /**
  * A NamedNote represents a defined pitch. This class is immutable.
@@ -177,7 +177,7 @@ public class NamedNote extends AbstractNote {
 	 * @return
 	 */
 	private String getEnharmonic(String note) {
-		String[] noteTokens = note.split("");
+		String[] noteTokens = note.split("(?!^)", 2);
 		StringBuilder enh = new StringBuilder();
 		if(noteTokens.length > 1) {
 			switch(noteTokens[1]) {
@@ -196,13 +196,15 @@ public class NamedNote extends AbstractNote {
 					break;
 				}
 			case "x": 
-			case "𝄪": enh.append(NoteLetter.nextNote(noteTokens[0])); // double sharp
+			case "♯♯":
+			case "##": enh.append(NoteLetter.nextNote(noteTokens[0])); // double sharp
 				switch(noteTokens[0].toUpperCase()) { // may have to add sharps
 				case "E": case "B":
 					enh.append("#");
 					break;
 				}
-			case "𝄫": enh.append(NoteLetter.previousNote(noteTokens[0])); // double flat
+			case "bb":
+			case "♭♭": enh.append(NoteLetter.previousNote(noteTokens[0])); // double flat
 				switch(noteTokens[0].toUpperCase()) { // may have to add flats
 				case "C": case "F":
 					enh.append("b");

@@ -8,11 +8,11 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import model.NamedNote;
+import model.Note;
+import model.ToneRow;
 
-import twelve.NamedNote;
-import twelve.Note;
-import twelve.ToneRow;
+import org.junit.Test;
 
 /**
  * @author Geoffrey
