@@ -8,7 +8,7 @@ package twelve;
  * https://en.wikipedia.org/wiki/NamedNote#Note_designation_in_accordance_with_octave_name
  * @author Geoffrey
  */
-public class NamedNote implements Note {
+public class NamedNote extends AbstractNote {
 	/** The pitch class to which this note belongs. */
 	private final PitchClass pitchClass;
 	/**

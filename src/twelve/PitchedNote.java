@@ -8,7 +8,7 @@ package twelve;
  * @author Geoffrey Liu
  *
  */
-public class PitchedNote implements Note {
+public class PitchedNote extends AbstractNote {
 	
 	/** The pitch class of this note */
 	PitchClass pc;

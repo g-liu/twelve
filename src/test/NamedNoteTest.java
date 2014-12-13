@@ -1,6 +1,3 @@
-/**
- * 
- */
 package test;
 
 import static org.junit.Assert.*;
@@ -11,8 +8,7 @@ import twelve.NamedNote;
 import twelve.PitchClass;
 
 /**
- * @author Geoffrey
- *
+ * @author Geoffrey Liu
  */
 public class NamedNoteTest {
 	
@@ -64,7 +60,63 @@ public class NamedNoteTest {
 		assertEquals("Ab", af.getNoteName());
 		assertEquals("Bb", bf.getNoteName());
 	}
-
+	
+	@Test
+	public void createNamedNoteFromIrregularAccidentals() {
+		NamedNote cb = new NamedNote("Cb");
+		NamedNote fb = new NamedNote("Fb");
+		NamedNote es = new NamedNote("E#");
+		NamedNote bs = new NamedNote("B#");
+		
+		assertNotNull(cb);
+		assertNotNull(fb);
+		assertNotNull(es);
+		assertNotNull(bs);
+		
+		assertEquals("B", cb.getNoteName());
+		assertEquals("C", bs.getNoteName());
+		assertEquals("F", es.getNoteName());
+		assertEquals("E", fb.getNoteName());
+	}
+	
+	@Test
+	public void createNamedNoteFromDoubleHash() {
+		NamedNote cds = new NamedNote("C##");
+		NamedNote dds = new NamedNote("D##");
+		NamedNote eds = new NamedNote("E##");
+		NamedNote fds = new NamedNote("F##");
+		NamedNote gds = new NamedNote("G##");
+		NamedNote ads = new NamedNote("A##");
+		NamedNote bds = new NamedNote("B##");
+		
+		assertEquals("D", cds.getNoteName());
+		assertEquals("E", dds.getNoteName());
+		assertEquals("F#", eds.getNoteName());
+		assertEquals("G", fds.getNoteName());
+		assertEquals("A", gds.getNoteName());
+		assertEquals("B", ads.getNoteName());
+		assertEquals("C#", bds.getNoteName());
+	}
+	
+	@Test
+	public void createNamedNoteFromDoubleB() {
+		NamedNote cdb = new NamedNote("Cbb");
+		NamedNote ddb = new NamedNote("Dbb");
+		NamedNote edb = new NamedNote("Ebb");
+		NamedNote fdb = new NamedNote("Fbb");
+		NamedNote gdb = new NamedNote("Gbb");
+		NamedNote adb = new NamedNote("Abb");
+		NamedNote bdb = new NamedNote("Bbb");
+	
+		assertEquals("Bb", cdb.getNoteName());
+		assertEquals("C", ddb.getNoteName());
+		assertEquals("D", edb.getNoteName());
+		assertEquals("Eb", fdb.getNoteName());
+		assertEquals("F", gdb.getNoteName());
+		assertEquals("G", adb.getNoteName());
+		assertEquals("A", bdb.getNoteName());
+	}
+	
 	@Test
 	public void testWhiteNotesCorrespondToPitchClasses() {
 		NamedNote[] whiteKeys = new NamedNote[]{
