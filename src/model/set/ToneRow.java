@@ -113,7 +113,12 @@ public class ToneRow<E extends Note> extends AbstractSetClass<E> {
 	 * @return the tone row, inverted
 	 */
 	public ToneRow<E> inversion() {
-		throw new UnsupportedOperationException("Not yet implemented.");
+		List<E> notes = new ArrayList<E>(rowSet);
+		for(int i = 0; i < notes.size(); i++) {
+			int interval = notes.get(0).intervalTo(notes.get(i));
+			notes.set(i, (E) notes.get(0).transpose(-interval));
+		}
+		return new ToneRow<E>(notes);
 	}
 	
 	/**

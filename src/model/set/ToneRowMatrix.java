@@ -29,8 +29,12 @@ public class ToneRowMatrix<E extends Note> {
 	 *  tone row matrix
 	 */
 	private void computeMatrix() {
+		// get the inversion of the base. this is needed to determine the
+		// order of the rows
+		ToneRow<E> inversion = getBase().inversion();
+		
 		for(int i = 1; i < 12; i++) {
-			int interval = getBase().first().intervalTo(getBase().get(i));
+			int interval = getBase().first().intervalTo(inversion.get(i));
 			matrix.add(getBase().transposition(interval));
 		}
 	}

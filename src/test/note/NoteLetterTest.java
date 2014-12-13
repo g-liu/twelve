@@ -1,4 +1,4 @@
-package test;
+package test.note;
 
 import static org.junit.Assert.*;
 import model.note.NoteLetter;
