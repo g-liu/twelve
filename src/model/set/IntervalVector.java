@@ -13,6 +13,8 @@ import model.note.Note;
  *
  */
 public class IntervalVector {
+	
+	/** The intervals, represented by a mapping from interval => count */
 	private Map<Integer, Integer> intervals;
 
 	/**
@@ -44,8 +46,22 @@ public class IntervalVector {
 	}
 	
 	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof IntervalVector)) {
+			return false;
+		}
+		IntervalVector ivo = (IntervalVector) o;
+		return this.intervals.equals(ivo.intervals);
+	}
+	
+	@Override
+	public int hashCode() {
+		return intervals.hashCode();
+	}
+	
+	@Override
 	public String toString() {
-		return String.format("{%d, %d, %d, %d, %d, %d}",
+		return String.format("<%d, %d, %d, %d, %d, %d>",
 				intervals.get(1),
 				intervals.get(2),
 				intervals.get(3),
