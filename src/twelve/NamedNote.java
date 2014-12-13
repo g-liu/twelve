@@ -26,7 +26,6 @@ public class NamedNote extends AbstractNote {
 	 * Constructs a new Node belonging to the specified PitchClass and having the
 	 *  specified register.
 	 * @param pc the PitchClass that this NamedNote belongs to. Must not be null.
-	 * @param reg the register that this NamedNote belongs to. Must not be null
 	 */
 	public NamedNote(PitchClass pc) {
 		this.pitchClass = pc;
@@ -231,20 +230,7 @@ public class NamedNote extends AbstractNote {
 	 */
 	@Override
 	public NamedNote transpose(int interval) {
-		// TODO: Implement
-		return null;
-	}
-	
-	/**
-	 * Returns the intervallic distance between this note and otherNote,
-	 *  relative to thisNote.
-	 * @param otherNote
-	 * @return
-	 */
-	@Override
-	public int intervalTo(Note otherNote) {
-		// TODO: Implement
-		return 0;
+		return new NamedNote(this.pitchClass.getTransposition(interval));
 	}
 	
 	/**

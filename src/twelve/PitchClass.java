@@ -72,7 +72,8 @@ public enum PitchClass {
 	 * @return 
 	 */
 	public PitchClass getTransposition(int interval) {
-		int numberClass = (degree + interval) % 12;
+		interval %= 12;
+		int numberClass = (12 + degree + interval) % 12;
 		return getPitchClass(numberClass);
 	}
 }

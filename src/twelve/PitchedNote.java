@@ -11,7 +11,7 @@ package twelve;
 public class PitchedNote extends AbstractNote {
 	
 	/** The pitch class of this note */
-	PitchClass pc;
+	private PitchClass pitchClass;
 	
 	/**
 	 * Constructs a new instance of PitchedNote
@@ -21,7 +21,7 @@ public class PitchedNote extends AbstractNote {
 		if(pitchClass < 0 || pitchClass > 11) {
 			throw new IllegalArgumentException("Error: pitch class must be between 0 and 11");
 		}
-		this.pc = PitchClass.getPitchClass(pitchClass);
+		this.pitchClass = PitchClass.getPitchClass(pitchClass);
 	}
 	
 	/**
@@ -32,9 +32,9 @@ public class PitchedNote extends AbstractNote {
 	public PitchedNote(char note) {
 		switch(note) {
 			case 'A':
-			case 't': this.pc = PitchClass.TEN;
+			case 't': this.pitchClass = PitchClass.TEN;
 			case 'B':
-			case 'e': this.pc = PitchClass.ELEVEN;
+			case 'e': this.pitchClass = PitchClass.ELEVEN;
 			default: throw new IllegalArgumentException("Invalid pitch class: " + note);
 		}
 	}
@@ -44,7 +44,7 @@ public class PitchedNote extends AbstractNote {
 	 * @param pc the PitchClass
 	 */
 	public PitchedNote(PitchClass pc) {
-		this.pc = pc;
+		this.pitchClass = pc;
 	}
 	
 	/**
@@ -52,36 +52,33 @@ public class PitchedNote extends AbstractNote {
 	 * @param note the NamedNote
 	 */
 	public PitchedNote(NamedNote note) {
-		this.pc = note.getPitchClass();
+		this.pitchClass = note.getPitchClass();
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see twelve.Note#getPitchClass()
 	 */
 	@Override
 	public PitchClass getPitchClass() {
-		return pc;
+		return pitchClass;
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see twelve.Note#transpose(int)
 	 */
 	@Override
 	public Note transpose(int interval) {
-		// TODO Auto-generated method stub
-		return null;
+		return new PitchedNote(this.pitchClass.degree() + interval);
 	}
 
-	/* (non-Javadoc)
-	 * @see twelve.Note#intervalTo(twelve.NamedNote)
-	 */
 	@Override
-	public int intervalTo(Note otherNote) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int hashCode() {
+		return this.pitchClass.hashCode();
 	}
 	
+	@Override
 	public String toString() {
-		return pc.toString();
+		return pitchClass.toString();
 	}
+	
 }

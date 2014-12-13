@@ -1,12 +1,10 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 import twelve.NamedNote;
-import twelve.PitchedNote;
 import twelve.ToneRow;
 
 /**
@@ -36,7 +34,13 @@ public class Twelve {
 				while(named == null || notes.contains(named)) {
 					System.out.print(String.format("Note %d: ", i + 1));
 					rawInput = s.nextLine();
-					named = new NamedNote(rawInput);
+					try {
+						named = new NamedNote(rawInput);
+					}
+					catch(IllegalArgumentException iae) {
+						named = null;
+						System.err.println("Invalid note: " + rawInput);
+					}
 				}
 				notes.add(named);
 			}
@@ -53,6 +57,7 @@ public class Twelve {
 		rowMatrix.add(base);
 		for(int i = 1; i < 12; i++) {
 			int interval = base.first().intervalTo(base.get(i));
+			System.out.println(interval);
 			rowMatrix.add(base.transposition(interval));
 		}
 		
@@ -60,7 +65,7 @@ public class Twelve {
 	}
 	
 	/**
-	 * Takes the user inputted args and returns a new NamedNote array
+	 * Takes the user inputted arguments and returns a new NamedNote array
 	 * @param argv
 	 * @return the NamedNote array from the user args
 	 */

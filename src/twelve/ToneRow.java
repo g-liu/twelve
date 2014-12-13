@@ -111,9 +111,6 @@ public class ToneRow<E extends Note> {
 	 * @return the tone row, inverted
 	 */
 	public ToneRow<E> inversion() {
-		for(E note : rowSet) {
-			// TODO: Implement
-		}
 		throw new UnsupportedOperationException("Not yet implemented.");
 	}
 	
