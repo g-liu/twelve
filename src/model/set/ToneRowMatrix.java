@@ -1,19 +1,19 @@
-/**
- * 
- */
 package model.set;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import model.note.Note;
 
 /**
+ * Represents an immutable tone row matrix. Includes operations for viewing the
+ *  data in different manners.
  * @author Geoffrey Liu
  */
 public class ToneRowMatrix<E extends Note> {
 	
-	List<ToneRow<E>> matrix;
+	private List<ToneRow<E>> matrix;
 
 	/**
 	 * Initialize the ToneRowMatrix with the given "base" tone-row 
@@ -61,6 +61,21 @@ public class ToneRowMatrix<E extends Note> {
 			cols.add(new ToneRow<E>(notes));
 		}
 		return cols;
+	}
+	
+	/**
+	 * Converts the tone row matrix into its integer representation
+	 * @return
+	 */
+	public int[][] toInteger() {
+		int[][] toInt = new int[12][12];
+		for(int i = 0; i < matrix.size(); i++) {
+			int k = 0;
+			for(Iterator<E> j = matrix.get(i).iterator(); j.hasNext();) {
+				toInt[i][k++] = j.next().getPitchClass().degree();
+			}
+		}
+		return toInt;
 	}
 	
 	/**

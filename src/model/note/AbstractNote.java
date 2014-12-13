@@ -25,5 +25,27 @@ public abstract class AbstractNote implements Note {
 	public int intervalTo(Note otherNote) {
 		return otherNote.getPitchClass().degree() - this.getPitchClass().degree();
 	}
+	
+	/**
+	 * Returns whether this note and another note are the same note.
+	 * @param n the other note to which to compare
+	 * @return true if the two notes have the same note, false otherwise
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Note)) {
+			return false;
+		}
+		Note no = (Note) o;
+		return this.getPitchClass().equals(no.getPitchClass());
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		return getPitchClass().hashCode();
+	}
 
 }

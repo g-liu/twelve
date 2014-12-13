@@ -27,5 +27,8 @@ public interface Note {
 	 *  that this value is in the range [-11, 11].
 	 */
 	public int intervalTo(Note otherNote);
+	
+	@Override
+	public boolean equals(Object o);
 
 }

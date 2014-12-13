@@ -132,7 +132,9 @@ public class NamedNote extends AbstractNote {
 				case "b": 
 				case "♭": pitchClassNum--; break;
 				case "x": 
+				case "♯♯":
 				case "##": pitchClassNum += 2; break; // double sharp
+				case "♭♭":
 				case "bb": pitchClassNum -= 2; break; // double flat
 				default: throw new IllegalArgumentException("Invalid note modifier " + noteParse[1]);
 			}
@@ -233,27 +235,6 @@ public class NamedNote extends AbstractNote {
 	@Override
 	public NamedNote transpose(int interval) {
 		return new NamedNote(this.pitchClass.getTransposition(interval));
-	}
-	
-	/**
-	 * Returns whether this note and another note are the same note.
-	 * @param n the other note to which to compare
-	 * @return true if the two notes have the same note, false otherwise
-	 */
-	@Override
-	public boolean equals(Object n) {
-		if(!(n instanceof Note)) {
-			return false;
-		}
-		return this.pitchClass.degree() == ((Note) n).getPitchClass().degree();
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int hashCode() {
-		return this.pitchClass.hashCode();
 	}
 
 	/**

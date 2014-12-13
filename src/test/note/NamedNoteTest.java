@@ -117,6 +117,26 @@ public class NamedNoteTest {
 	}
 	
 	@Test
+	public void doubleHashAndDoubleSharpEquivalence() {
+		NamedNote cdh = new NamedNote("C##");
+		NamedNote cds = new NamedNote("C♯♯");
+
+		assertEquals(cdh.getPitchClass(), cds.getPitchClass());
+		assertEquals(cdh.getNoteName(), cds.getNoteName());
+		assertEquals(cdh.getEnharmonic(), cds.getEnharmonic());
+	}
+	
+	@Test
+	public void doubleBAndDoubleFlatEquivalence() {
+		NamedNote ddb = new NamedNote("Dbb");
+		NamedNote ddf = new NamedNote("D♭♭");
+		
+		assertEquals(ddb.getPitchClass(), ddf.getPitchClass());
+		assertEquals(ddb.getNoteName(), ddf.getNoteName());
+		assertEquals(ddb.getEnharmonic(), ddf.getEnharmonic());
+	}
+	
+	@Test
 	public void testWhiteNotesCorrespondToPitchClasses() {
 		NamedNote[] whiteKeys = new NamedNote[]{
 				new NamedNote(PitchClass.ZERO),

@@ -31,9 +31,9 @@ public class PitchedNote extends AbstractNote {
 	public PitchedNote(char note) {
 		switch(note) {
 			case 'A':
-			case 't': this.pitchClass = PitchClass.TEN;
+			case 't': this.pitchClass = PitchClass.TEN; break;
 			case 'B':
-			case 'e': this.pitchClass = PitchClass.ELEVEN;
+			case 'e': this.pitchClass = PitchClass.ELEVEN; break;
 			default: throw new IllegalArgumentException("Invalid pitch class: " + note);
 		}
 	}
@@ -68,11 +68,6 @@ public class PitchedNote extends AbstractNote {
 	@Override
 	public Note transpose(int interval) {
 		return new PitchedNote(this.pitchClass.degree() + interval);
-	}
-
-	@Override
-	public int hashCode() {
-		return this.pitchClass.hashCode();
 	}
 	
 	@Override
