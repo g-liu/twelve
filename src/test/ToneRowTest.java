@@ -8,9 +8,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.NamedNote;
-import model.Note;
-import model.ToneRow;
+import model.note.NamedNote;
+import model.note.Note;
+import model.set.ToneRow;
 
 import org.junit.Test;
 

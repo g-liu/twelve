@@ -1,4 +1,4 @@
-package model;
+package model.note;
 
 /**
  * @author Geoffrey Liu
@@ -7,19 +7,19 @@ package model;
 public abstract class AbstractNote implements Note {
 
 	/**
-	 * @see model.Note#getPitchClass()
+	 * @see model.note.Note#getPitchClass()
 	 */
 	@Override
 	public abstract PitchClass getPitchClass();
 
 	/**
-	 * @see model.Note#transpose(int)
+	 * @see model.note.Note#transpose(int)
 	 */
 	@Override
 	public abstract Note transpose(int interval);
 
 	/**
-	 * @see model.Note#intervalTo(model.Note)
+	 * @see model.note.Note#intervalTo(model.note.Note)
 	 */
 	@Override
 	public int intervalTo(Note otherNote) {

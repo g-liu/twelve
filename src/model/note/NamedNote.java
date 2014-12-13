@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model;
+package model.note;
 
 /**
  * A NamedNote represents a defined pitch. This class is immutable.

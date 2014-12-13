@@ -1,4 +1,4 @@
-package gui;
+package ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,7 +16,6 @@ import javax.swing.WindowConstants;
  * @author Geoffrey Liu
  */
 public class TwelveGUI {
-	private JPanel rowDisplay;
 
 	/**
 	 * Creates the application
@@ -27,7 +26,7 @@ public class TwelveGUI {
 		JPanel noteButtons = new JPanel();
 		noteButtons.setLayout(new GridLayout(2, 6, 5, 5));
 		
-		rowDisplay = new JPanel();
+		JPanel rowDisplay = new JPanel();
 		JPanel matrixDisplay = new JPanel();
 		
 		JButton[] pitchButtons = new JButton[12];
@@ -42,10 +41,6 @@ public class TwelveGUI {
 				public void actionPerformed(ActionEvent arg0) {
 					JButton trigger = (JButton) arg0.getSource();
 					trigger.setEnabled(false);
-					
-					rowDisplay.add(new JLabel(trigger.getText()));
-					rowDisplay.revalidate();
-					rowDisplay.repaint();
 				}
 				
 			});

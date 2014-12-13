@@ -1,4 +1,4 @@
-package model;
+package model.set;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import model.note.Note;
+
 /**
  * A ToneRow class. Immutable.
  * 
  * Representation Invariant: No two Notes may have the same PitchClass. This is
- * 	enforced by the Set-backed structure of the ToneRow.
+ * 	enforced by the SetClass-backed structure of the ToneRow.
  * @author Geoffrey Liu
  */
-public class ToneRow<E extends Note> implements Iterable<E> {
+public class ToneRow<E extends Note> extends AbstractSetClass<E> {
 	
 	/** The tone row */
 	private Set<E> rowSet;

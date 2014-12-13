@@ -1,7 +1,7 @@
 package test;
 
 import static org.junit.Assert.*;
-import model.NoteLetter;
+import model.note.NoteLetter;
 
 import org.junit.Test;
 

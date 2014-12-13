@@ -2,10 +2,10 @@ package main;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import model.NamedNote;
-import model.ToneRow;
+import model.note.NamedNote;
+import model.set.ToneRow;
+import model.set.ToneRowMatrix;
 
 /**
  * Run the program
@@ -17,27 +17,20 @@ public class Twelve {
 	 * Holds a representation of the ToneRow matrix.
 	 * Each entry represents a row in the matrix.
 	 */
-	private static List<ToneRow<NamedNote>> rowMatrix;
+	private static ToneRowMatrix<NamedNote> rowMatrix;
 
 	/**
 	 * @param args command-line args
 	 */
 	public static void main(String[] argv) {
-		Scanner s = new Scanner(System.in);
-		List<NamedNote> notes;
-		notes = parseArgs(argv);
+		List<NamedNote> notes = parseArgs(argv);
 		
 		assert notes.size() == 12;
-		rowMatrix = new ArrayList<ToneRow<NamedNote>>(12);
 		
 		ToneRow<NamedNote> base = new ToneRow<NamedNote>(notes);
-		rowMatrix.add(base);
-		for(int i = 1; i < 12; i++) {
-			int interval = base.first().intervalTo(base.get(i));
-			rowMatrix.add(base.transposition(interval));
-		}
+		rowMatrix = new ToneRowMatrix<NamedNote>(base);
 		
-		printMatrix(rowMatrix);
+		System.out.println(rowMatrix);
 	}
 	
 	/**
@@ -57,17 +50,5 @@ public class Twelve {
 			iae.printStackTrace();
 		}
 		return addToRow;
-	}
-
-	private static void printMatrix(List<ToneRow<NamedNote>> mat) {
-		for(ToneRow<NamedNote> row : mat) {
-			System.out.println("-------------------------------------");
-			System.out.print("|");
-			for(NamedNote note : row) {
-				System.out.print(String.format("%1$-2s|", note.toString()));
-			}
-			System.out.println();
-		}
-		System.out.println("-------------------------------------");
 	}
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model;
+package model.note;
 
 /**
  * A Note with a PitchClass, but not a name.
@@ -55,7 +55,7 @@ public class PitchedNote extends AbstractNote {
 	}
 
 	/**
-	 * @see model.Note#getPitchClass()
+	 * @see model.note.Note#getPitchClass()
 	 */
 	@Override
 	public PitchClass getPitchClass() {
@@ -63,7 +63,7 @@ public class PitchedNote extends AbstractNote {
 	}
 
 	/**
-	 * @see model.Note#transpose(int)
+	 * @see model.note.Note#transpose(int)
 	 */
 	@Override
 	public Note transpose(int interval) {

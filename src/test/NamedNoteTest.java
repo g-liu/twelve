@@ -1,8 +1,8 @@
 package test;
 
 import static org.junit.Assert.*;
-import model.NamedNote;
-import model.PitchClass;
+import model.note.NamedNote;
+import model.note.PitchClass;
 
 import org.junit.Test;
 

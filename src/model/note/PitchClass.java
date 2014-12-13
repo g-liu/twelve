@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model;
+package model.note;
 
 /**
  * An enum representing a certain pitch class.

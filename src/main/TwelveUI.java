@@ -3,7 +3,7 @@
  */
 package main;
 
-import gui.TwelveGUI;
+import ui.TwelveGUI;
 
 /**
  * user interface for model tone analyzer
