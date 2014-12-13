@@ -40,6 +40,30 @@ public class ToneRowMatrix<E extends Note> {
 	}
 	
 	/**
+	 * Retrieves the rows in the ToneRowMatrix
+	 * @return the rows
+	 */
+	public List<ToneRow<E>> getRows() {
+		return new ArrayList<ToneRow<E>>(matrix);
+	}
+	
+	/**
+	 * Retrieves the columns in the ToneRowMatrix
+	 * @return the columns
+	 */
+	public List<ToneRow<E>> getColumns() {
+		List<ToneRow<E>> cols = new ArrayList<ToneRow<E>>();
+		for(int i = 0; i < 12; i++) {
+			List<E> notes = new ArrayList<E>();
+			for(int j = 0; i < matrix.size(); i++) {
+				notes.add((E) matrix.get(j).get(i));
+			}
+			cols.add(new ToneRow<E>(notes));
+		}
+		return cols;
+	}
+	
+	/**
 	 * Retrieves the base tone row
 	 * @return the base tone row
 	 */
