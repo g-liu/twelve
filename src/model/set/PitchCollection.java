@@ -8,6 +8,7 @@ import model.note.Note;
 
 /**
  * A pitch collection is a set of distinct pitch classes.
+ * 
  * @author Geoffrey Liu
  */
 public class PitchCollection<E extends Note> extends AbstractSetClass<E> {
@@ -16,8 +17,7 @@ public class PitchCollection<E extends Note> extends AbstractSetClass<E> {
 	private Set<E> pitchCollection;
 
 	/**
-	 * Creates a new PitchCollection
-	 * TODO doc 
+	 * Creates a new PitchCollection TODO doc
 	 */
 	public PitchCollection(E[] pitches) {
 		pitchCollection = new LinkedHashSet<E>();

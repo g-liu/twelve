@@ -1,6 +1,7 @@
 package test.set;
 
 import static org.junit.Assert.*;
+import model.set.IntervalVector;
 
 import org.junit.Test;
 
@@ -9,10 +10,5 @@ import org.junit.Test;
  *
  */
 public class IntervalVectorTest {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 
 }
